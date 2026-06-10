@@ -1,0 +1,39 @@
+mutation CreateUser($username: String!, $email: String!, $bio: String, $avatarUrl: String) @auth(level: PUBLIC) {
+  user_insert(data: {
+    username: $username,
+    email: $email,
+    joinDate_expr: "request.time",
+    bio: $bio,
+    avatarUrl: $avatarUrl
+  })
+}
+
+mutation CreatePost($title: String!, $content: String!, $imageUrl: String, $authorId: UUID!, $fandomId: UUID!) @auth(level: USER) {
+  post_insert(data: {
+    title: $title,
+    content: $content,
+    createdAt_expr: "request.time",
+    imageUrl: $imageUrl,
+    authorId: $authorId,
+    fandomId: $fandomId
+  })
+}
+
+query ListPostsInFandom($fandomId: UUID!) @auth(level: PUBLIC) {
+  posts(where: {fandomId: {eq: $fandomId}}, orderBy: [{createdAt: DESC}]) {
+    title
+    content
+    author {
+      username
+    }
+  }
+}
+
+mutation AddComment($text: String!, $postId: UUID!, $authorId: UUID!) @auth(level: USER) {
+  comment_insert(data: {
+    text: $text,
+    createdAt_expr: "request.time",
+    postId: $postId,
+    authorId: $authorId
+  })
+}

@@ -1,0 +1,44 @@
+type User @table {
+  username: String!
+  email: String!
+  joinDate: Timestamp!
+  bio: String
+  avatarUrl: String
+}
+
+type Fandom @table {
+  name: String!
+  description: String!
+  category: String!
+  bannerUrl: String
+  memberCount: Int
+}
+
+type Post @table {
+  title: String!
+  content: String!
+  createdAt: Timestamp!
+  imageUrl: String
+  author: User!
+  fandom: Fandom!
+}
+
+type Comment @table {
+  text: String!
+  createdAt: Timestamp!
+  likesCount: Int
+  author: User!
+  post: Post!
+}
+
+type Membership @table(key: ["user", "fandom"]) {
+  user: User!
+  fandom: Fandom!
+  role: String!
+}
+
+type Vote @table(key: ["user", "post"]) {
+  type: String!
+  user: User!
+  post: Post!
+}
