@@ -16,10 +16,29 @@ export default function ProfilePage() {
     }
   }, [loading, user, router]);
 
-  if (loading || !user || !profile) {
+  if (loading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
         <div className="w-6 h-6 border-2 border-accent-amber/30 border-t-accent-amber rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!loading && user && !profile) {
+    return (
+      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
+        <div className="card p-8 max-w-sm w-full text-center space-y-4">
+          <p className="text-text-primary font-semibold">Profile not found</p>
+          <p className="text-text-muted text-sm">
+            Your account exists but your profile data is missing. Please sign out and create a new account.
+          </p>
+          <button
+            onClick={async () => { await logout(); router.push("/signup"); }}
+            className="btn-primary w-full justify-center"
+          >
+            Sign out
+          </button>
+        </div>
       </div>
     );
   }
