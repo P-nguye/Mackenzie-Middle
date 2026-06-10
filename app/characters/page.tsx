@@ -47,7 +47,7 @@ export default function CharactersPage() {
           <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-6">
             Staff
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-lg">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {teachers.map((char) => (
               <CharacterCard
                 key={char.slug}
