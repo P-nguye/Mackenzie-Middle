@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import CharacterCard from "@/components/CharacterCard";
 import { characters } from "@/data/characters";
+import CharactersGridToggle from "@/components/CharactersGridToggle";
 
 export const metadata: Metadata = {
   title: "Characters",
-  description: "Meet the cast of Mackenzie Middle — the students and teachers of a 1980s Edmonton school.",
+  description:
+    "Meet the cast of Mackenzie Middle — the students and teachers of a 1980s Edmonton school.",
 };
 
 export default function CharactersPage() {
@@ -25,39 +26,8 @@ export default function CharactersPage() {
         </p>
       </div>
 
-      {/* Students */}
-      <section className="mb-16">
-        <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-6">
-          Students
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {students.map((char) => (
-            <CharacterCard
-              key={char.slug}
-              character={char}
-              href={`/characters/${char.slug}`}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Teachers */}
-      {teachers.length > 0 && (
-        <section>
-          <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-6">
-            Staff
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {teachers.map((char) => (
-              <CharacterCard
-                key={char.slug}
-                character={char}
-                href={`/characters/${char.slug}`}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Grid with 2D / 3D toggle — client component */}
+      <CharactersGridToggle students={students} teachers={teachers} />
     </div>
   );
 }

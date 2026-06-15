@@ -5,7 +5,12 @@ export interface Character {
   bio: string;
   grade: string;
   traits: string[];
-  portraitPlaceholder: string; // CSS gradient used until real art arrives
+  // CSS gradient shown while artwork is absent — keep even after adding images
+  portraitPlaceholder: string;
+  // Set once artwork is ready (see public/assets/characters/NAMING_GUIDE.md).
+  // Convention: "/assets/characters/2d/{slug}.webp" and "/assets/characters/3d/{slug}.webp"
+  portrait2d?: string;
+  portrait3d?: string;
 }
 
 export const characters: Character[] = [

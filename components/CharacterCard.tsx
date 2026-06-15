@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Character } from "@/data/characters";
 
 interface CharacterCardProps {
@@ -7,6 +8,9 @@ interface CharacterCardProps {
   selectable?: boolean;
   selected?: boolean;
   onSelect?: (slug: string) => void;
+  // Passed by CharactersGridToggle to switch all cards between design modes.
+  // When undefined (e.g. home page carousel), the card renders the gradient placeholder.
+  designMode?: "2d" | "3d";
 }
 
 export default function CharacterCard({
@@ -15,7 +19,15 @@ export default function CharacterCard({
   selectable = false,
   selected = false,
   onSelect,
+  designMode,
 }: CharacterCardProps) {
+  const portrait =
+    designMode === "2d"
+      ? character.portrait2d
+      : designMode === "3d"
+        ? character.portrait3d
+        : undefined;
+
   const inner = (
     <div
       className={`card-hover cursor-pointer h-full flex flex-col ${
@@ -29,22 +41,54 @@ export default function CharacterCard({
       <div
         className={`relative w-full aspect-[3/4] bg-gradient-to-b ${character.portraitPlaceholder} flex items-end p-4`}
       >
-        {/* Placeholder silhouette */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-20">
-          <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-          </svg>
-        </div>
+        {portrait ? (
+          // Real artwork — activated by setting portrait2d/portrait3d in data/characters.ts
+          <Image
+            src={portrait}
+            alt={`${character.name} — ${designMode?.toUpperCase()} design`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+          />
+        ) : (
+          // Gradient placeholder with silhouette until artwork is added
+          <div className="absolute inset-0 flex items-center justify-center opacity-20">
+            <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+            </svg>
+          </div>
+        )}
+
+        {/* Small mode indicator shown on placeholder cards when toggle is active */}
+        {designMode && !portrait && (
+          <span className="absolute top-2 right-2 text-white/30 text-xs font-black tracking-widest select-none">
+            {designMode.toUpperCase()}
+          </span>
+        )}
 
         {/* Grade badge */}
-        <span className={`relative z-10 badge ${character.grade === "Teacher" ? "badge-violet" : "badge-amber"}`}>
+        <span
+          className={`relative z-10 badge ${
+            character.grade === "Teacher" ? "badge-violet" : "badge-amber"
+          }`}
+        >
           {character.grade}
         </span>
 
         {selectable && selected && (
-          <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-accent-amber flex items-center justify-center">
-            <svg className="w-3.5 h-3.5 text-bg-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+          <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-accent-amber flex items-center justify-center z-10">
+            <svg
+              className="w-3.5 h-3.5 text-bg-primary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={3}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           </div>
         )}
@@ -52,11 +96,18 @@ export default function CharacterCard({
 
       {/* Info */}
       <div className="p-4 flex flex-col gap-1 flex-1">
-        <h3 className="font-semibold text-text-primary text-base leading-snug">{character.name}</h3>
-        <p className="text-text-secondary text-sm leading-snug line-clamp-2">{character.tagline}</p>
+        <h3 className="font-semibold text-text-primary text-base leading-snug">
+          {character.name}
+        </h3>
+        <p className="text-text-secondary text-sm leading-snug line-clamp-2">
+          {character.tagline}
+        </p>
         <div className="flex flex-wrap gap-1 mt-auto pt-3">
           {character.traits.slice(0, 2).map((trait) => (
-            <span key={trait} className="text-xs text-text-muted bg-bg-elevated px-2 py-0.5 rounded-full">
+            <span
+              key={trait}
+              className="text-xs text-text-muted bg-bg-elevated px-2 py-0.5 rounded-full"
+            >
               {trait}
             </span>
           ))}
