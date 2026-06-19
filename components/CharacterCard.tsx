@@ -47,7 +47,7 @@ export default function CharacterCard({
             src={portrait}
             alt={`${character.name} — ${designMode?.toUpperCase()} design`}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
         ) : (
@@ -69,7 +69,7 @@ export default function CharacterCard({
         {/* Grade badge */}
         <span
           className={`relative z-10 badge ${
-            character.grade === "Teacher" ? "badge-violet" : "badge-amber"
+            character.isStaff ? "badge-violet" : "badge-amber"
           }`}
         >
           {character.grade}

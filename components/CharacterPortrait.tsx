@@ -56,7 +56,7 @@ export default function CharacterPortrait({ character }: CharacterPortraitProps)
             alt={`${character.name} — ${mode.toUpperCase()} design`}
             fill
             priority
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 1024px) 100vw, 33vw"
           />
         ) : (
@@ -82,7 +82,7 @@ export default function CharacterPortrait({ character }: CharacterPortraitProps)
         {/* Grade badge — always on top */}
         <div className="absolute bottom-4 left-4 z-10">
           <span
-            className={`badge ${character.grade === "Teacher" ? "badge-violet" : "badge-amber"}`}
+            className={`badge ${character.isStaff ? "badge-violet" : "badge-amber"}`}
           >
             {character.grade}
           </span>

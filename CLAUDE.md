@@ -1,10 +1,8 @@
-# GoalStack
+# Mackenzie Middle
 
 ## Project Overview
 
-GoalStack is a weighted goal planner where users define a goal with a start date and total duration,
-then break it into subtasks with relative effort weights. The system calculates each subtask's
-allocated time and renders a sequential timeline with computed start and end dates.
+Mackenzie Middle is a fan site and community platform for a fictional 1985 Edmonton-set YouTube series and companion novel. Users browse character profiles (students and staff), read novel chapters, download media, post on a message board, and chat live. Accounts use Firebase Auth; each user selects a character avatar during signup, which persists across community features.
 
 ---
 
@@ -51,34 +49,21 @@ but auth and Firestore writes will fail silently.
 
 ## Core Logic Summary
 
-Each subtask carries a numeric `weight`. Allocated days are derived from:
+Character data is hard-coded in `data/characters.ts` as a typed array — not sourced from Firestore. Each character has optional `portrait2d` and `portrait3d` fields pointing to `/public/assets/characters/{mode}/{slug}.webp`. The 2D/3D toggle is UI-only state; switching modes re-renders components with a different image source, falling back to a CSS gradient when no artwork is present.
 
-```
-allocatedDays = (subtask.weight / sumOfAllWeights) × goal.totalDays
-```
-
-Result is rounded to **1 decimal place**. Subtask start dates are computed sequentially:
-subtask N starts the day after subtask N-1 ends. Goal `startDate` anchors the chain.
-
-Full formula spec and edge-case rules: [`.claude/docs/date_logic.md`](.claude/docs/date_logic.md)
+Community features (threads, replies, chat) use Firestore `onSnapshot` for real-time updates. Auth state is global React Context that must wrap the entire app.
 
 ---
 
 ## Key Constraints
 
-- **Never recalculate weights server-side on read.** Allocation is computed client-side at
-  render time from the raw `weight` values stored in Firestore. Do not cache computed days.
-- **`sumOfAllWeights` can be any positive number**, not just 100. The UI may show percentage
-  labels but the formula uses raw weights. Do not normalise weights before saving.
-- **Goal `totalDays` is always a positive integer.** Hours-based goals are converted to
-  fractional days at input time; the stored field is always `totalDays: number`.
-- **Subtask order is explicit.** Each subtask has an `order: number` field. Do not sort by
-  creation time or Firestore document ID.
-- **Do not modify `lib/firebase.ts` placeholder logic.** The fallback strings allow CI builds
-  without secrets. Real values come exclusively from `.env.local`.
-- **`AuthProvider` wraps the entire app** in `app/layout.tsx`. Never move it below a page
-  boundary; doing so breaks `useAuth()` in server components that render before hydration.
-- **Branch Management**: Before adding any features or fix bugs, always work on a new git branch. Never commit directly on main. Bug branches must follow naming convention bug/[des], feature branches follow naming convention feature/[des]
+- **Never move `AuthProvider`.** It lives in `app/layout.tsx` and wraps the entire app. Moving it below a page boundary breaks `useAuth()` in all child components.
+- **Character data is static.** `data/characters.ts` is the single source of truth. Do not fetch characters from Firestore unless explicitly implementing that migration.
+- **Do not modify `lib/firebase.ts` placeholder logic.** Fallback strings allow CI builds without secrets. Real values come from `.env.local` only.
+- **Asset naming is slug-based.** Character artwork must be placed at `/public/assets/characters/{2d|3d}/{slug}.webp`. Full convention in `.claude/docs/character_system.md`.
+- **Firestore rules are temporary.** Current rules allow all reads/writes until 2026-07-10. Any production deploy requires per-collection rules.
+- **Dark theme only.** No light mode exists. All styling uses custom Tailwind color tokens defined in `tailwind.config.ts`.
+- **Branch management.** Always branch before changes. Never commit directly to `main`. Use `feature/[desc]` for features, `bug/[desc]` for fixes.
 
 ---
 
@@ -88,4 +73,5 @@ Full formula spec and edge-case rules: [`.claude/docs/date_logic.md`](.claude/do
 |---|---|
 | App architecture, routing, component tree | [`.claude/docs/architecture.md`](.claude/docs/architecture.md) |
 | Firestore schema, auth context, real-time patterns | [`.claude/docs/state_management.md`](.claude/docs/state_management.md) |
-| Weight formula, timeline derivation, edge cases | [`.claude/docs/date_logic.md`](.claude/docs/date_logic.md) |
+| Character data model, artwork naming, 2D/3D system | [`.claude/docs/character_system.md`](.claude/docs/character_system.md) |
+| Tailwind theme, color tokens, custom utility classes | [`.claude/docs/styling.md`](.claude/docs/styling.md) |

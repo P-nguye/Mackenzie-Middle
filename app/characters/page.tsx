@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default function CharactersPage() {
-  const students = characters.filter((c) => c.grade !== "Teacher");
-  const teachers = characters.filter((c) => c.grade === "Teacher");
+  const students = characters.filter((c) => !c.isStaff);
+  const teachers = characters.filter((c) => c.isStaff);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">

@@ -3,127 +3,143 @@
 ## Firebase Setup
 
 `lib/firebase.ts` initialises a single Firebase app instance (guarded against double-init
-via `getApps().length === 0`). It exports three service handles:
+via `getApps().length === 0`). Exports:
 
 ```ts
-export const auth    // Firebase Authentication
-export const db      // Firestore
-export const storage // Firebase Storage
+export const auth     // Firebase Authentication
+export const db       // Firestore
+export const storage  // Firebase Storage
 ```
 
-All env vars are `NEXT_PUBLIC_FIREBASE_*`. Placeholder fallback strings in the file allow
-`next build` to complete in CI without real credentials. Never remove those fallbacks.
+All env vars are `NEXT_PUBLIC_FIREBASE_*`. Placeholder fallback strings allow `next build`
+to complete in CI without real credentials. **Never remove those fallbacks.**
+
+---
 
 ## Auth Context
 
-`lib/auth-context.tsx` provides a React context consumed via `useAuth()`.
+`lib/auth-context.tsx` — React Context consumed via `useAuth()`.
 
 ```ts
 interface UserProfile {
   uid: string;
   email: string;
   displayName: string;
-  avatarCharacterId: string;  // references a character slug
+  avatarCharacterId: string;  // character slug, e.g. "minh-le"
 }
 
 interface AuthContextValue {
-  user: User | null;        // Firebase Auth user object
+  user: User | null;           // Firebase Auth user object
   profile: UserProfile | null; // Firestore /users/{uid} document
-  loading: boolean;         // true until first onAuthStateChanged fires
+  loading: boolean;            // true until first onAuthStateChanged fires
   logout: () => Promise<void>;
 }
 ```
 
-`loading: true` on mount. Gate all auth-dependent renders behind `if (loading) return`.
-`profile` is fetched from Firestore on every auth state change — it is not cached locally.
+`loading` is `true` on mount. Gate all auth-dependent renders behind `if (loading) return`.
+`profile` is re-fetched from Firestore on every auth state change — it is not cached.
 
-## Firestore Schema
+---
 
-### Collection: `users/{uid}`
+## Firestore Collections
 
-```
-{
-  uid: string,
-  email: string,
-  displayName: string,
-  avatarCharacterId: string
-}
-```
-
-Written at signup. Read by `AuthProvider` on each login.
-
-### Collection: `goals/{goalId}`
-
-```
-{
-  uid: string,           // owner — always index on this field
-  title: string,
-  startDate: string,     // ISO 8601 date: "YYYY-MM-DD"
-  totalDays: number,     // always positive integer; hours converted at input time
-  createdAt: Timestamp,
-  updatedAt: Timestamp
-}
-```
-
-Security rule: `request.auth.uid == resource.data.uid`.
-
-### Subcollection: `goals/{goalId}/subtasks/{subtaskId}`
-
-```
-{
-  title: string,
-  weight: number,   // raw positive number; NOT normalised to 100
-  order: number,    // explicit sort key; 0-indexed
-  createdAt: Timestamp
-}
-```
-
-Ordering: always query `orderBy("order", "asc")`. Never rely on document ID order.
-
-### Collection: `threads/{threadId}` (community board — unrelated to goals)
-
-```
-{
-  title: string,
-  body: string,
-  authorUid: string,
-  authorName: string,
-  createdAt: Timestamp,
-  replyCount: number
-}
-```
-
-### Subcollection: `threads/{threadId}/replies/{replyId}`
-
-```
-{
-  body: string,
-  authorUid: string,
-  authorName: string,
-  createdAt: Timestamp
-}
-```
-
-## Real-time Subscription Pattern
-
-Use `onSnapshot` for collections that update live (threads, subtasks during editing).
-Use `getDoc` / `getDocs` for one-shot reads (goal metadata, user profile).
+### `users/{uid}`
 
 ```ts
-// live subscription — always return the unsubscribe function from useEffect
-useEffect(() => {
-  const q = query(collection(db, "goals"), where("uid", "==", user.uid), orderBy("createdAt", "desc"));
-  return onSnapshot(q, (snap) => {
-    setGoals(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<Goal, "id">) })));
-  });
-}, [user.uid]);
+{
+  uid: string;
+  email: string;
+  displayName: string;
+  avatarCharacterId: string;  // character slug selected at signup
+}
 ```
 
-Always pass `serverTimestamp()` for `createdAt` / `updatedAt` on writes, never `new Date()`.
+Written once at signup. Read by `AuthProvider` on every login.
 
-## Client vs Server State
+### `threads/{threadId}`
 
-- **Firestore** is the source of truth for all persisted data.
-- **Computed values** (allocated days, subtask start/end dates) live only in React state
-  derived at render time. They are never written to Firestore.
-- **Form state** is local `useState`. Do not lift form state above the form component.
+```ts
+{
+  title: string;
+  body: string;
+  authorUid: string;
+  authorName: string;
+  createdAt: Timestamp;
+  replyCount: number;
+}
+```
+
+### `threads/{threadId}/replies/{replyId}`
+
+```ts
+{
+  body: string;
+  authorUid: string;
+  authorName: string;
+  createdAt: Timestamp;
+}
+```
+
+### `chatMessages/{messageId}`
+
+```ts
+{
+  text: string;
+  authorUid: string;
+  displayName: string;
+  avatarCharacterId: string;  // used to display character avatar in chat
+  createdAt: Timestamp;
+}
+```
+
+Chat page live-subscribes and auto-scrolls to the latest message.
+
+---
+
+## Real-Time Subscription Pattern
+
+Use `onSnapshot` for collections that update live (threads list, thread replies, chat messages).
+Use `getDoc` for one-shot reads (user profile, single thread metadata).
+
+```ts
+useEffect(() => {
+  const q = query(
+    collection(db, "threads"),
+    orderBy("createdAt", "desc"),
+    limit(50)
+  );
+  return onSnapshot(q, (snap) => {
+    setThreads(snap.docs.map((d) => ({ id: d.id, ...(d.data() as ThreadData) })));
+  });
+}, []);
+```
+
+Always return the unsubscribe function from `useEffect`. Always pass `serverTimestamp()`
+for `createdAt` on writes — never `new Date()`.
+
+---
+
+## Firestore Security Rules
+
+Current rule in `firestore.rules`:
+
+```
+allow read, write: if request.time < timestamp.date(2026, 7, 10);
+```
+
+**These rules are temporary and expire 2026-07-10.** Before any production deploy, replace
+with per-collection rules that check `request.auth.uid` against document ownership fields.
+
+---
+
+## State Layers
+
+| Layer | Tool | Notes |
+|---|---|---|
+| Auth state | React Context (`useAuth()`) | Global; never duplicated in local state |
+| Real-time Firestore data | `onSnapshot` + `useState` | Per-page subscription |
+| One-shot Firestore reads | `getDoc` in `useEffect` | Thread detail, user profile |
+| Form state | Local `useState` | Not lifted above the form component |
+| UI toggle state (2D/3D) | Local `useState` | Owned by `CharactersGridToggle` or `CharacterPortrait` |
+
+Character data is **not** in Firestore — see `.claude/docs/character_system.md`.
