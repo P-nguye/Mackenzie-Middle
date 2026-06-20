@@ -1,69 +1,99 @@
 # Architecture
 
-## App Router Structure
+## Directory Structure
 
 ```
-app/
-├── layout.tsx              # Root layout — AuthProvider, Navbar, Footer wrapping
-├── page.tsx                # Dashboard: list of user's goals
-├── globals.css             # Tailwind base + custom utility classes
-├── goals/
-│   ├── new/
-│   │   └── page.tsx        # Create goal form (name, startDate, totalDays, unit)
-│   └── [id]/
-│       ├── page.tsx        # Goal detail: subtask list + timeline view
-│       └── edit/
-│           └── page.tsx    # Edit goal metadata
-components/
-├── Navbar.tsx              # Top nav with auth state (login/logout/profile links)
-├── Footer.tsx              # Site footer
-├── GoalCard.tsx            # Summary card used on dashboard
-├── SubtaskList.tsx         # Ordered list of subtasks with weight inputs
-├── TimelineView.tsx        # Visual timeline rendering computed date ranges
-└── WeightSlider.tsx        # Single subtask weight input (number or drag)
-data/                       # Static seed data only — no runtime data here
-lib/
-├── firebase.ts             # Firebase app init — exports auth, db, storage
-├── auth-context.tsx        # AuthProvider + useAuth hook
-└── goalLogic.ts            # Pure functions: allocateDays, buildTimeline (no Firebase)
-types/
-└── index.ts                # Shared TypeScript interfaces (Goal, Subtask)
+Mackenzie-Middle/
+├── app/                          # Next.js App Router
+│   ├── layout.tsx               # Root layout — AuthProvider, Navbar, Footer
+│   ├── page.tsx                 # Home: hero + featured characters
+│   ├── globals.css              # Tailwind base + custom utility classes
+│   ├── about/page.tsx
+│   ├── characters/
+│   │   ├── page.tsx             # Character grid with 2D/3D toggle
+│   │   └── [slug]/page.tsx      # Character detail: bio, relationships, AI chat placeholder
+│   ├── novel/page.tsx           # Chapter list (PDF + audio — content pending)
+│   ├── media/page.tsx           # Wallpapers & soundtrack (assets pending)
+│   ├── community/
+│   │   ├── page.tsx             # Thread list (real-time)
+│   │   └── [id]/page.tsx        # Thread detail + replies (real-time)
+│   ├── chat/page.tsx            # Live fan chat (real-time)
+│   ├── login/page.tsx           # Email/password sign-in
+│   ├── signup/page.tsx          # 2-step: credentials form → avatar selection
+│   └── profile/page.tsx         # User dashboard (auth-protected)
+├── components/                   # Shared React components (all client-side)
+├── data/
+│   └── characters.ts            # Hard-coded character data — 9 entries, no Firestore
+├── lib/
+│   ├── firebase.ts              # Firebase app init (single instance, .env fallbacks)
+│   └── auth-context.tsx         # AuthProvider + useAuth() hook
+└── public/assets/characters/
+    ├── 2d/                      # Flat 2D artwork (.webp)
+    ├── 3d/                      # 3D render artwork (.webp, pending)
+    └── NAMING_GUIDE.md
 ```
 
-## Routing Conventions
+---
 
-- All goal routes are under `/goals/`. The root `/` is the authenticated dashboard.
-- `[id]` is the Firestore document ID of the goal.
-- Pages that require auth redirect to `/login` if `useAuth().user` is null.
-- `app/layout.tsx` is a Server Component; `AuthProvider` is a Client Component
-  imported into it. All pages that call `useAuth()` must be `"use client"`.
+## Route Table
 
-## Component Responsibilities
-
-| Component | Owns | Does not own |
+| Route | Auth Required | Notes |
 |---|---|---|
-| `SubtaskList` | Subtask CRUD UI, weight input | Weight calculation |
-| `TimelineView` | Rendering date ranges | Computing them |
-| `GoalCard` | Display only | Any Firestore reads |
-| `goalLogic.ts` | All math (allocateDays, buildTimeline) | Any UI or Firebase calls |
+| `/` | No | Hero + featured characters |
+| `/characters` | No | Grid; student/staff split; 2D/3D toggle |
+| `/characters/:slug` | No | Bio, relationships, AI chat placeholder |
+| `/about` | No | Series background |
+| `/novel` | No | Chapters listed; content is placeholder |
+| `/media` | No | Downloads listed; assets are placeholder |
+| `/community` | No | Thread list; posting requires auth |
+| `/community/:id` | No | Thread + replies; replying requires auth |
+| `/chat` | No | View free; sending messages requires auth |
+| `/login` | No | Redirects to `/profile` if already signed in |
+| `/signup` | No | Redirects to `/profile` on completion |
+| `/profile` | **Yes** | `useEffect` redirects to `/login` if `user` is null |
 
-`goalLogic.ts` contains pure functions only. Tests target this file exclusively.
-Never import Firebase inside `goalLogic.ts`.
+---
 
-## Styling System
-
-Tailwind CSS with a custom theme defined in `tailwind.config.ts`:
+## Component Tree
 
 ```
-bg-bg-primary      #0d0f14   page background
-bg-bg-card         #161a23   card surface
-bg-bg-elevated     #1e2433   hover / input surface
-text-text-primary  #f0f0f0
-text-text-secondary #a0a8b8
-text-text-muted    #5a6070
-accent-amber       #e8a045
-accent-violet      #6c63d4
+app/layout.tsx (Server Component)
+└── AuthProvider          ← lib/auth-context.tsx, Client Component
+    ├── Navbar            ← fixed header, uses usePathname()
+    ├── {children}        ← page slot
+    └── Footer
 ```
 
-Utility classes `btn-primary`, `card`, `badge`, `badge-amber`, `badge-violet`
-are defined in `globals.css`. Add new utilities there; do not use inline styles.
+**`AuthProvider` must remain at the root level.** All pages calling `useAuth()` must be `"use client"`.
+
+---
+
+## Key Components
+
+**`CharacterCard`** — Reusable card for the `/characters` grid and signup avatar-selection step.
+Props: `character`, `href`, `selectable`, `selected`, `onSelect`, `designMode: "2d" | "3d"`.
+Renders portrait (image or CSS gradient fallback), grade badge, name, tagline, traits array.
+
+**`CharacterPortrait`** — Client component with local 2D/3D toggle. Used on `/characters/:slug`. 3:4 aspect ratio with mode-switch button overlay.
+
+**`CharactersGridToggle`** — Client component owning design mode state for the `/characters` page. Splits character array into students (`isStaff: false`) and staff (`isStaff: true`), passes `designMode` to all `CharacterCard` children.
+
+**`AiChatPlaceholder`** — Static "Coming Soon" UI on character detail pages. No logic, no props needed.
+
+**`MediaCard`** — Props: `title`, `subtitle`, `type: "wallpaper" | "track"`, `isPlaceholder`. All instances are currently placeholder.
+
+---
+
+## Placeholder vs Live Features
+
+| Feature | Status |
+|---|---|
+| Character grid + detail pages | Live |
+| 2D/3D portrait toggle | Live (2D art partial; 3D pending) |
+| Firebase Auth (signup, login, logout) | Live |
+| User profile page | Live |
+| Message board (threads + replies) | Live |
+| Live chat | Live |
+| Novel chapters | Placeholder — content not yet available |
+| Media downloads | Placeholder — assets not yet available |
+| AI character chat | Placeholder component only |
