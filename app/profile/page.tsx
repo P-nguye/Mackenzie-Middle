@@ -16,7 +16,7 @@ export default function ProfilePage() {
     }
   }, [loading, user, router]);
 
-  if (loading) {
+  if (loading || !user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
         <div className="w-6 h-6 border-2 border-accent-amber/30 border-t-accent-amber rounded-full animate-spin" />
@@ -24,7 +24,7 @@ export default function ProfilePage() {
     );
   }
 
-  if (!loading && user && !profile) {
+  if (!profile) {
     return (
       <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
         <div className="card p-8 max-w-sm w-full text-center space-y-4">
