@@ -97,13 +97,29 @@ export default async function CharacterProfilePage({ params }: Props) {
               Relationships
             </h2>
             {character.relationships && character.relationships.length > 0 ? (
-              <div className="space-y-3">
-                {character.relationships.map(({ role, person }, i) => (
+              <div className="space-y-4">
+                {character.relationships.map(({ role, person, slug: relSlug, description }, i) => (
                   <div key={i} className="flex gap-4">
                     <span className="text-text-muted text-xs font-semibold uppercase tracking-wider w-36 shrink-0 pt-0.5">
                       {role}
                     </span>
-                    <span className="text-text-secondary text-sm leading-snug">{person}</span>
+                    <div className="flex-1 min-w-0">
+                      {relSlug ? (
+                        <Link
+                          href={`/characters/${relSlug}`}
+                          className="text-sm font-semibold text-text-primary hover:text-accent-amber transition-colors"
+                        >
+                          {person}
+                        </Link>
+                      ) : (
+                        <span className="text-sm font-semibold text-text-primary">{person}</span>
+                      )}
+                      {description && (
+                        <p className="text-text-muted text-sm leading-relaxed mt-0.5">
+                          {description}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
