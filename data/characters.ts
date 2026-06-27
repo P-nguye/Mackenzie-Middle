@@ -1,3 +1,9 @@
+export interface Relationship {
+  characterSlug: string;
+  characterName: string;
+  description: string;
+}
+
 export interface Character {
   slug: string;
   name: string;
