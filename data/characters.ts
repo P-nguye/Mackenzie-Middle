@@ -39,8 +39,8 @@ export const characters: Character[] = [
     relationships: [
       {
         role: "Best Friend",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "As fellow immigrant boys, they understand each other without lengthy explanations and share hockey, school life, and the experience of adapting to Canada. If Minh is the emotional heart of the series, Willie is the steady foundation beneath him.",
       },
@@ -67,8 +67,8 @@ export const characters: Character[] = [
       },
       {
         role: "Entertained By",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Tara teases Minh endlessly — not out of cruelty, but because his reactions are funny. She frequently tries to help him with Shelley, though her matchmaking rarely goes according to plan.",
       },
@@ -100,8 +100,8 @@ export const characters: Character[] = [
     relationships: [
       {
         role: "Best Friend",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Where Shelley is thoughtful, Tara is impulsive. They balance each other perfectly — Shelley helps Tara slow down, while Tara helps Shelley take chances. Together they form one of the strongest friendships in the series.",
       },
@@ -121,8 +121,8 @@ export const characters: Character[] = [
       },
       {
         role: "Friend",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "Shelley enjoys Willie's company and appreciates his intelligence and honesty. She can always count on him to be straightforward — sometimes brutally so.",
       },
@@ -150,8 +150,8 @@ export const characters: Character[] = [
     ],
   },
   {
-    slug: "willie-niou",
-    name: "Willie Niou",
+    slug: "willie-lin",
+    name: "Willie Lin",
     tagline: "The brain of the group.",
     bio: "A Taiwanese immigrant and Minh's closest friend. Tall, skinny, and highly intelligent, Willie is somewhat socially awkward and has very little interest in traditional popularity or dating. He would much rather spend his time playing hockey, reading, or discussing unusual facts. His straightforward honesty often creates unintentionally funny situations.",
     grade: "Grade 8",
@@ -175,8 +175,8 @@ export const characters: Character[] = [
       },
       {
         role: "Teased By",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Tara's favorite target for teasing. His serious nature makes him an easy setup. Despite this, Tara secretly enjoys his company because he never pretends to be someone he's not.",
       },
@@ -236,8 +236,8 @@ export const characters: Character[] = [
       },
       {
         role: "Friend",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Opposites in almost every way, but Tara's friendliness and persistence slowly break through June's shyness. Tara becomes one of the people who helps June feel like she truly belongs.",
       },
@@ -250,8 +250,8 @@ export const characters: Character[] = [
       },
       {
         role: "Friend",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "A natural understanding as fellow immigrants and academically focused students. Their friendship is calm, respectful, and low-pressure — built on shared experience.",
       },
@@ -290,8 +290,8 @@ export const characters: Character[] = [
       },
       {
         role: "Friend",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "Jack enjoys challenging Willie, believing he spends too much time thinking and not enough time living. The contrast between Jack's spontaneity and Willie's caution creates many humorous moments — and a genuine friendship.",
       },
@@ -304,8 +304,8 @@ export const characters: Character[] = [
       },
       {
         role: "Close Friend",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "One of his closest friends, sharing similar energy and enthusiasm. What Jack doesn't realize for a long time is that Tara's feelings go beyond friendship — one of the most bittersweet storylines in the series.",
       },
@@ -333,10 +333,10 @@ export const characters: Character[] = [
     ],
   },
   {
-    slug: "tara-moon",
-    name: "Tara Moon",
+    slug: "tara-bennett",
+    name: "Tara Bennett",
     tagline: "The spark plug of the group.",
-    bio: "Outgoing, mischievous, energetic, and always laughing, Tara Moon has a natural talent for getting herself and her friends into harmless trouble. She acts as the primary driving force behind the group adventures on the girls' side. Despite her overt confidence, she secretly harbors romantic feelings for Jack Armstrong — feelings she hides behind jokes and teasing.",
+    bio: "Outgoing, mischievous, energetic, and always laughing, Tara Bennett has a natural talent for getting herself and her friends into harmless trouble. She acts as the primary driving force behind the group adventures on the girls' side. Despite her overt confidence, she secretly harbors romantic feelings for Jack Armstrong — feelings she hides behind jokes and teasing.",
     grade: "Grade 8",
     isStaff: false,
     traits: ["Energetic", "Mischievous", "Outgoing", "Playful"],
@@ -358,8 +358,8 @@ export const characters: Character[] = [
       },
       {
         role: "Teases",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "Willie is one of Tara's favorite people to tease. She loves watching him react to the unexpected. Beneath the teasing, she genuinely cares about him and often acts like a big sister.",
       },
@@ -412,8 +412,8 @@ export const characters: Character[] = [
       },
       {
         role: "Entertained By",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Blake finds Tara entertaining — unlike most girls, she refuses to be impressed by him, which only makes him more determined. Tara quickly realizes she should not trust him.",
       },
@@ -494,15 +494,15 @@ export const characters: Character[] = [
       },
       {
         role: "Rivals With",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Tara is Sloan's opposite in every way. Tara openly resists Sloan's dominance with humor and sarcasm, deflating her authority and creating an ongoing rivalry of sharp exchanges.",
       },
       {
         role: "Invisible To",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "Willie is completely invisible to Sloan's social world. His total lack of interest in status and popularity is confusing to her — she is used to influencing people, and Willie simply doesn't participate.",
       },
@@ -536,8 +536,8 @@ export const characters: Character[] = [
       },
       {
         role: "Supports",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "Ms. Hand appreciates Willie's intelligence and knows his social awkwardness isn't a fault. She gives him space while gently encouraging him to engage more with the world around him.",
       },
@@ -550,8 +550,8 @@ export const characters: Character[] = [
       },
       {
         role: "Understands",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "She understands that Tara hides deeper feelings behind humor, and quietly watches for the moments when Tara needs someone to see past the jokes.",
       },
@@ -590,8 +590,8 @@ export const characters: Character[] = [
       },
       {
         role: "Encourages",
-        person: "Willie Niou",
-        slug: "willie-niou",
+        person: "Willie Lin",
+        slug: "willie-lin",
         description:
           "Supports Willie in hockey alongside Minh, helping both boys connect with Canadian culture through winter sports. Recognizes Willie's steady reliability as a team player.",
       },
@@ -604,8 +604,8 @@ export const characters: Character[] = [
       },
       {
         role: "Warns",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Frequently warns Tara about safety — but secretly appreciates her energy and enthusiasm in class more than he lets on.",
       },
@@ -658,8 +658,8 @@ export const characters: Character[] = [
       },
       {
         role: "Frequently Warns",
-        person: "Tara Moon",
-        slug: "tara-moon",
+        person: "Tara Bennett",
+        slug: "tara-bennett",
         description:
           "Tara is one of his most frequent concerns. Her hallway behavior and impulsiveness lead to regular warnings. He is firm but not unkind toward her.",
       },
