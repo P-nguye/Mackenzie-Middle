@@ -97,6 +97,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Kind", "Friendly", "Inclusive", "Intelligent"],
     portraitPlaceholder: "from-pink-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Shelly.png",
     relationships: [
       {
         role: "Best Friend",
@@ -158,6 +159,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Intelligent", "Honest", "Awkward", "Straightforward"],
     portraitPlaceholder: "from-indigo-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Willie.png",
     relationships: [
       {
         role: "Best Friend",
@@ -219,6 +221,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Polite", "Respectful", "Determined", "Quiet"],
     portraitPlaceholder: "from-purple-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/June.png",
     relationships: [
       {
         role: "Shared Bond",
@@ -280,6 +283,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Outgoing", "Athletic", "Adventurous", "Charismatic"],
     portraitPlaceholder: "from-orange-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Jack.png",
     relationships: [
       {
         role: "Mentors",
@@ -341,6 +345,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Energetic", "Mischievous", "Outgoing", "Playful"],
     portraitPlaceholder: "from-yellow-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Tara.png",
     relationships: [
       {
         role: "Best Friend",
@@ -402,6 +407,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Charismatic", "Confident", "Manipulative", "Competitive"],
     portraitPlaceholder: "from-amber-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Blake.png",
     relationships: [
       {
         role: "Pursuit",
@@ -456,6 +462,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Confident", "Strategic", "Charismatic", "Status-conscious"],
     portraitPlaceholder: "from-fuchsia-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Sloan.png",
     relationships: [
       {
         role: "Strategic Alliance",
@@ -519,6 +526,7 @@ export const characters: Character[] = [
     isStaff: true,
     traits: ["Warm", "Respected", "Gentle", "Humorous"],
     portraitPlaceholder: "from-teal-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Hand.png",
     relationships: [
       {
         role: "Observes",
@@ -580,6 +588,7 @@ export const characters: Character[] = [
     isStaff: true,
     traits: ["Athletic", "Encouraging", "Supportive", "Surprising"],
     portraitPlaceholder: "from-green-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Ron.png",
     relationships: [
       {
         role: "Encourages",
@@ -641,6 +650,7 @@ export const characters: Character[] = [
     isStaff: true,
     traits: ["Stern", "Disciplined", "Strict", "Dedicated"],
     portraitPlaceholder: "from-slate-700 to-gray-900",
+    portrait2d: "/assets/characters/2d/Charles.png",
     relationships: [
       {
         role: "Fair Towards",
