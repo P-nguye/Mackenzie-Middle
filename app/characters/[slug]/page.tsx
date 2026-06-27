@@ -54,7 +54,7 @@ export default async function CharacterProfilePage({ params }: Props) {
               </svg>
             </div>
             <div className="absolute bottom-4 left-4">
-              <span className={`badge ${character.grade === "Teacher" ? "badge-violet" : "badge-amber"}`}>
+              <span className={`badge ${character.grade === "Teacher" || character.grade === "Principal" ? "badge-violet" : "badge-amber"}`}>
                 {character.grade}
               </span>
             </div>
