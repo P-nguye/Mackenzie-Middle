@@ -101,15 +101,31 @@ export default async function CharacterProfilePage({ params }: Props) {
             <p className="text-text-secondary text-base leading-relaxed">{character.bio}</p>
           </div>
 
-          {/* Relationships placeholder */}
-          <div className="card p-5">
-            <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-3">
-              Relationships
-            </h2>
-            <p className="text-text-muted text-sm">
-              Character relationship map coming soon.
-            </p>
-          </div>
+          {/* Relationships */}
+          {character.relationships.length > 0 && (
+            <div className="card p-5">
+              <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
+                Relationships
+              </h2>
+              <ul className="space-y-4">
+                {character.relationships.map((rel) => (
+                  <li key={rel.characterSlug} className="flex gap-3">
+                    <div className="flex-1 min-w-0">
+                      <Link
+                        href={`/characters/${rel.characterSlug}`}
+                        className="text-sm font-semibold text-text-primary hover:text-accent-amber transition-colors"
+                      >
+                        {rel.characterName}
+                      </Link>
+                      <p className="text-text-muted text-sm leading-relaxed mt-0.5">
+                        {rel.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* AI Chat placeholder */}
           <AiChatPlaceholder characterName={character.name} />
