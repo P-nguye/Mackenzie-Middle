@@ -35,7 +35,7 @@ export const characters: Character[] = [
     isStaff: false,
     traits: ["Thoughtful", "Kind", "Observant", "Shy"],
     portraitPlaceholder: "from-blue-900 to-slate-800",
-    portrait2d: "/assets/characters/2d/Minh.webp",
+    portrait2d: "/assets/characters/2d/Minh.png",
     relationships: [
       {
         role: "Best Friend",
