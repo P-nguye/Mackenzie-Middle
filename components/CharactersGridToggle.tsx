@@ -48,7 +48,7 @@ export default function CharactersGridToggle({
 
       {/* Students grid */}
       <section className="mb-16">
-        <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-6">
+        <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
           Students
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -66,7 +66,7 @@ export default function CharactersGridToggle({
       {/* Staff grid */}
       {teachers.length > 0 && (
         <section>
-          <h2 className="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-6">
+          <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
             Staff
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

@@ -24,7 +24,7 @@ export default function Navbar() {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-amber to-accent-violet flex items-center justify-center text-bg-primary font-bold text-sm">
             MM
           </div>
-          <span className="font-bold text-text-primary text-lg tracking-tight group-hover:text-accent-amber transition-colors">
+          <span className="font-display font-bold text-text-primary text-lg tracking-tight group-hover:text-accent-amber transition-colors">
             Mackenzie Middle
           </span>
         </Link>

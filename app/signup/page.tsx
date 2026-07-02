@@ -183,7 +183,7 @@ export default function SignupPage() {
               )}
 
               <button type="submit" className="btn-primary w-full justify-center mt-2">
-                Continue — Pick your avatar
+                Continue to Avatar
               </button>
             </form>
           </div>
@@ -216,6 +216,7 @@ export default function SignupPage() {
                   selectable
                   selected={selectedAvatar === char.slug}
                   onSelect={setSelectedAvatar}
+                  designMode="2d"
                 />
               ))}
             </div>
