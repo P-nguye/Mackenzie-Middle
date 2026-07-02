@@ -53,10 +53,10 @@ export default function CharacterPortrait({ character }: CharacterPortraitProps)
           // Real artwork — swap in by setting portrait2d / portrait3d on the character
           <Image
             src={portrait}
-            alt={`${character.name} — ${mode.toUpperCase()} design`}
+            alt={`${character.name}, ${mode.toUpperCase()} design`}
             fill
             priority
-            className="object-contain"
+            className="object-cover"
             sizes="(max-width: 1024px) 100vw, 33vw"
           />
         ) : (

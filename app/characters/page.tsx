@@ -16,13 +16,12 @@ export default function CharactersPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
       {/* Header */}
       <div className="mb-12">
-        <span className="badge badge-amber mb-4 inline-flex">The Cast</span>
-        <h1 className="text-4xl md:text-5xl font-black text-text-primary mb-4">
+        <h1 className="font-display text-4xl md:text-5xl font-bold text-text-primary tracking-tight mb-4">
           Meet the Characters
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl">
-          Every hallway has its players. Here are the people navigating Mackenzie Middle School
-          in 1985 — and the one adult who actually gets it.
+          Every hallway has its players. Here are the people navigating Mackenzie
+          Middle School in 1985, students and staff alike.
         </p>
       </div>
 

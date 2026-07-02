@@ -40,7 +40,7 @@ body {
   }
 
   .section-title {
-    @apply text-2xl md:text-3xl font-bold text-text-primary;
+    @apply font-display text-3xl md:text-4xl font-bold text-text-primary tracking-tight;
   }
 
   .section-subtitle {
@@ -57,6 +57,33 @@ body {
 
   .badge-violet {
     @apply badge bg-accent-violet/15 text-accent-violet border border-accent-violet/20;
+  }
+}
+
+/* Entrance animation — used with .rise-1 … .rise-4 delay steps */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.rise-1 { animation-delay: 80ms; }
+.rise-2 { animation-delay: 160ms; }
+.rise-3 { animation-delay: 240ms; }
+.rise-4 { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
   }
 }
 

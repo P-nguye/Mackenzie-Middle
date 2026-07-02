@@ -35,9 +35,8 @@ export default function MediaCard({ title, subtitle, type, isPlaceholder = true 
         {type === "wallpaper" && (
           <p className="text-text-secondary text-sm font-medium truncate">{title}</p>
         )}
-        {isPlaceholder ? (
-          <span className="badge badge-amber text-xs ml-auto flex-shrink-0">Coming Soon</span>
-        ) : (
+        {/* Section-level "Coming Soon" badge covers placeholders; show a button only for live assets */}
+        {!isPlaceholder && (
           <button className="btn-outline text-xs px-3 py-1.5 ml-auto flex-shrink-0">
             Download
           </button>

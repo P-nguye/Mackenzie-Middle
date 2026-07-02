@@ -30,89 +30,75 @@ export default function CharacterCard({
 
   const inner = (
     <div
-      className={`card-hover cursor-pointer h-full flex flex-col ${
+      className={`group relative aspect-[3/4] rounded-xl overflow-hidden border cursor-pointer transition-all duration-300 ${
         selectable && selected
-          ? "border-accent-amber/60 shadow-lg shadow-accent-amber/10"
-          : ""
+          ? "border-accent-amber shadow-lg shadow-accent-amber/10"
+          : "border-white/5 hover:border-accent-amber/40 hover:shadow-lg hover:shadow-black/40"
       }`}
       onClick={selectable && onSelect ? () => onSelect(character.slug) : undefined}
     >
-      {/* Portrait area */}
-      <div
-        className={`relative w-full aspect-[3/4] bg-gradient-to-b ${character.portraitPlaceholder} flex items-end p-4`}
-      >
-        {portrait ? (
-          // Real artwork — activated by setting portrait2d/portrait3d in data/characters.ts
-          <Image
-            src={portrait}
-            alt={`${character.name} — ${designMode?.toUpperCase()} design`}
-            fill
-            className="object-contain"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-          />
-        ) : (
-          // Gradient placeholder with silhouette until artwork is added
-          <div className="absolute inset-0 flex items-center justify-center opacity-20">
-            <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-            </svg>
-          </div>
-        )}
+      {/* Backdrop gradient — visible until artwork loads / when artwork is absent */}
+      <div className={`absolute inset-0 bg-gradient-to-b ${character.portraitPlaceholder}`} />
 
-        {/* Small mode indicator shown on placeholder cards when toggle is active */}
-        {designMode && !portrait && (
-          <span className="absolute top-2 right-2 text-white/30 text-xs font-black tracking-widest select-none">
-            {designMode.toUpperCase()}
-          </span>
-        )}
+      {portrait ? (
+        // Real artwork — activated by setting portrait2d/portrait3d in data/characters.ts
+        <Image
+          src={portrait}
+          alt={`${character.name}, ${designMode?.toUpperCase()} design`}
+          fill
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+        />
+      ) : (
+        // Silhouette placeholder until artwork is added
+        <div className="absolute inset-0 flex items-center justify-center opacity-20">
+          <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+          </svg>
+        </div>
+      )}
 
-        {/* Grade badge */}
-        <span
-          className={`relative z-10 badge ${
-            character.isStaff ? "badge-violet" : "badge-amber"
+      {/* Small mode indicator shown on placeholder cards when toggle is active */}
+      {designMode && !portrait && (
+        <span className="absolute top-3 right-3 text-white/30 text-xs font-black tracking-widest select-none">
+          {designMode.toUpperCase()}
+        </span>
+      )}
+
+      {/* Scrim so name/role stay readable over the photo */}
+      <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+      {/* Info */}
+      <div className="absolute inset-x-0 bottom-0 p-4">
+        <h3 className="font-display font-semibold text-text-primary text-base leading-snug">
+          {character.name}
+        </h3>
+        <p
+          className={`text-xs mt-0.5 ${
+            character.isStaff ? "text-accent-violet" : "text-accent-amber"
           }`}
         >
           {character.grade}
-        </span>
-
-        {selectable && selected && (
-          <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-accent-amber flex items-center justify-center z-10">
-            <svg
-              className="w-3.5 h-3.5 text-bg-primary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={3}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-        )}
-      </div>
-
-      {/* Info */}
-      <div className="p-4 flex flex-col gap-1 flex-1">
-        <h3 className="font-semibold text-text-primary text-base leading-snug">
-          {character.name}
-        </h3>
-        <p className="text-text-secondary text-sm leading-snug line-clamp-2">
-          {character.tagline}
         </p>
-        <div className="flex flex-wrap gap-1 mt-auto pt-3">
-          {character.traits.slice(0, 2).map((trait) => (
-            <span
-              key={trait}
-              className="text-xs text-text-muted bg-bg-elevated px-2 py-0.5 rounded-full"
-            >
-              {trait}
-            </span>
-          ))}
-        </div>
       </div>
+
+      {selectable && selected && (
+        <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-accent-amber flex items-center justify-center z-10">
+          <svg
+            className="w-3.5 h-3.5 text-bg-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={3}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
 
