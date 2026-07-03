@@ -10,6 +10,9 @@ import {
   onSnapshot,
   addDoc,
   serverTimestamp,
+  doc,
+  getDocs,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/auth-context";
@@ -39,6 +42,7 @@ export default function CommunityPage() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [posting, setPosting] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     const q = query(collection(db, "threads"), orderBy("createdAt", "desc"), limit(50));
@@ -67,6 +71,21 @@ export default function CommunityPage() {
       setShowForm(false);
     } finally {
       setPosting(false);
+    }
+  };
+
+  const handleDelete = async (thread: Thread) => {
+    // Only the creator may delete; guard here in addition to the UI gate.
+    if (!user || thread.authorUid !== user.uid) return;
+    if (!window.confirm(`Delete "${thread.title}"? This can't be undone.`)) return;
+    setDeletingId(thread.id);
+    try {
+      // Remove replies subcollection first so nothing is orphaned.
+      const replies = await getDocs(collection(db, "threads", thread.id, "replies"));
+      await Promise.all(replies.docs.map((r) => deleteDoc(r.ref)));
+      await deleteDoc(doc(db, "threads", thread.id));
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -127,12 +146,11 @@ export default function CommunityPage() {
       ) : (
         <div className="card divide-y divide-white/5">
           {threads.map((thread) => (
-            <Link
+            <div
               key={thread.id}
-              href={`/community/${thread.id}`}
               className="flex items-start gap-4 p-4 hover:bg-bg-elevated transition-colors"
             >
-              <div className="flex-1 min-w-0">
+              <Link href={`/community/${thread.id}`} className="flex-1 min-w-0">
                 <h3 className="text-text-primary font-medium text-sm line-clamp-1">{thread.title}</h3>
                 {thread.body && (
                   <p className="text-text-muted text-xs mt-0.5 line-clamp-1">{thread.body}</p>
@@ -144,14 +162,28 @@ export default function CommunityPage() {
                     {thread.createdAt ? timeAgo(thread.createdAt.seconds) : "just now"}
                   </span>
                 </div>
+              </Link>
+              <div className="flex items-center gap-3 flex-shrink-0 mt-0.5">
+                <div className="flex items-center gap-1 text-text-muted text-xs">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  {thread.replyCount}
+                </div>
+                {user?.uid === thread.authorUid && (
+                  <button
+                    onClick={() => handleDelete(thread)}
+                    disabled={deletingId === thread.id}
+                    aria-label="Delete thread"
+                    className="text-text-muted hover:text-red-400 transition-colors disabled:opacity-50"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                )}
               </div>
-              <div className="flex items-center gap-1 text-text-muted text-xs flex-shrink-0 mt-0.5">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                {thread.replyCount}
-              </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}

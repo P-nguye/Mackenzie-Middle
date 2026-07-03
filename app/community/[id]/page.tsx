@@ -2,9 +2,11 @@
 
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   doc,
   getDoc,
+  getDocs,
   collection,
   query,
   orderBy,
@@ -13,6 +15,7 @@ import {
   serverTimestamp,
   updateDoc,
   increment,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/auth-context";
@@ -20,6 +23,7 @@ import { useAuth } from "@/lib/auth-context";
 interface Thread {
   title: string;
   body: string;
+  authorUid: string;
   authorName: string;
   createdAt: { seconds: number } | null;
 }
@@ -41,11 +45,13 @@ function timeAgo(seconds: number) {
 
 export default function ThreadPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  const router = useRouter();
   const { user, profile } = useAuth();
   const [thread, setThread] = useState<Thread | null>(null);
   const [replies, setReplies] = useState<Reply[]>([]);
   const [replyText, setReplyText] = useState("");
   const [posting, setPosting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     getDoc(doc(db, "threads", id)).then((snap) => {
@@ -81,6 +87,22 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
     }
   };
 
+  const handleDelete = async () => {
+    // Only the thread creator may delete; guard here as well as in the UI.
+    if (!user || !thread || thread.authorUid !== user.uid) return;
+    if (!window.confirm(`Delete "${thread.title}"? This can't be undone.`)) return;
+    setDeleting(true);
+    try {
+      // Remove replies subcollection first so nothing is orphaned.
+      const snap = await getDocs(collection(db, "threads", id, "replies"));
+      await Promise.all(snap.docs.map((r) => deleteDoc(r.ref)));
+      await deleteDoc(doc(db, "threads", id));
+      router.push("/community");
+    } catch {
+      setDeleting(false);
+    }
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
       <Link
@@ -97,7 +119,21 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
         <>
           {/* Original post */}
           <div className="card p-6 mb-8">
-            <h1 className="text-xl font-bold text-text-primary mb-2">{thread.title}</h1>
+            <div className="flex items-start justify-between gap-4">
+              <h1 className="text-xl font-bold text-text-primary mb-2">{thread.title}</h1>
+              {user?.uid === thread.authorUid && (
+                <button
+                  onClick={handleDelete}
+                  disabled={deleting}
+                  className="inline-flex items-center gap-1.5 text-text-muted text-xs hover:text-red-400 transition-colors flex-shrink-0 disabled:opacity-50"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                  {deleting ? "Deleting…" : "Delete"}
+                </button>
+              )}
+            </div>
             {thread.body && (
               <p className="text-text-secondary text-sm leading-relaxed mb-4">{thread.body}</p>
             )}
