@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/lib/auth-context";
 import { getCharacterBySlug } from "@/data/characters";
 
@@ -54,9 +55,19 @@ export default function ProfilePage() {
         <div
           className={`w-20 h-20 rounded-2xl bg-gradient-to-b ${avatarChar?.portraitPlaceholder ?? "from-bg-elevated to-bg-card"} flex items-center justify-center flex-shrink-0 overflow-hidden`}
         >
-          <svg className="w-10 h-10 text-white/30" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-          </svg>
+          {avatarChar?.portrait2d ? (
+            <Image
+              src={avatarChar.portrait2d}
+              alt={avatarChar.name}
+              width={80}
+              height={80}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <svg className="w-10 h-10 text-white/30" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+            </svg>
+          )}
         </div>
 
         <div className="flex-1 min-w-0">

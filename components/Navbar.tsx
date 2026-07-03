@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/lib/auth-context";
+import { getCharacterBySlug } from "@/data/characters";
 
 const navLinks = [
   { href: "/characters", label: "Characters" },
@@ -15,6 +18,39 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, profile, loading } = useAuth();
+
+  const avatarChar = profile ? getCharacterBySlug(profile.avatarCharacterId) : undefined;
+
+  const profileLink = (
+    <Link
+      href="/profile"
+      className="flex items-center gap-2 rounded-lg pl-1 pr-2.5 py-1 hover:bg-bg-elevated transition-colors"
+    >
+      <span
+        className={`w-8 h-8 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 bg-gradient-to-b ${
+          avatarChar?.portraitPlaceholder ?? "from-bg-elevated to-bg-card"
+        }`}
+      >
+        {avatarChar?.portrait2d ? (
+          <Image
+            src={avatarChar.portrait2d}
+            alt={profile?.displayName ?? "Your avatar"}
+            width={32}
+            height={32}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-text-primary text-sm font-bold">
+            {(profile?.displayName ?? "?").charAt(0).toUpperCase()}
+          </span>
+        )}
+      </span>
+      <span className="text-text-primary text-sm font-medium max-w-[8rem] truncate">
+        {profile?.displayName ?? "Profile"}
+      </span>
+    </Link>
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-bg-primary/80 backdrop-blur-md">
@@ -48,12 +84,20 @@ export default function Navbar() {
 
         {/* Auth CTAs */}
         <div className="hidden md:flex items-center gap-2">
-          <Link href="/login" className="btn-ghost text-sm">
-            Sign in
-          </Link>
-          <Link href="/signup" className="btn-primary text-sm">
-            Join
-          </Link>
+          {loading ? (
+            <div className="w-8 h-8 rounded-full bg-bg-elevated animate-pulse" />
+          ) : user && profile ? (
+            profileLink
+          ) : (
+            <>
+              <Link href="/login" className="btn-ghost text-sm">
+                Sign in
+              </Link>
+              <Link href="/signup" className="btn-primary text-sm">
+                Join
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -90,12 +134,43 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="flex gap-2 pt-2 border-t border-white/5">
-            <Link href="/login" onClick={() => setMenuOpen(false)} className="btn-ghost flex-1 justify-center">
-              Sign in
-            </Link>
-            <Link href="/signup" onClick={() => setMenuOpen(false)} className="btn-primary flex-1 justify-center">
-              Join
-            </Link>
+            {loading ? null : user && profile ? (
+              <Link
+                href="/profile"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-text-primary hover:bg-bg-elevated transition-colors w-full"
+              >
+                <span
+                  className={`w-7 h-7 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 bg-gradient-to-b ${
+                    avatarChar?.portraitPlaceholder ?? "from-bg-elevated to-bg-card"
+                  }`}
+                >
+                  {avatarChar?.portrait2d ? (
+                    <Image
+                      src={avatarChar.portrait2d}
+                      alt={profile?.displayName ?? "Your avatar"}
+                      width={28}
+                      height={28}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-text-primary text-xs font-bold">
+                      {(profile?.displayName ?? "?").charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                </span>
+                {profile?.displayName ?? "Profile"}
+              </Link>
+            ) : (
+              <>
+                <Link href="/login" onClick={() => setMenuOpen(false)} className="btn-ghost flex-1 justify-center">
+                  Sign in
+                </Link>
+                <Link href="/signup" onClick={() => setMenuOpen(false)} className="btn-primary flex-1 justify-center">
+                  Join
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
