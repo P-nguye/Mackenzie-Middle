@@ -113,25 +113,8 @@ export default function Home() {
         <h2 className="section-title mb-8">Follow the Project</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {/* Novel — large cell */}
-          <div className="md:col-span-7 card relative overflow-hidden p-8 flex flex-col justify-between min-h-[260px]">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_100%_0%,rgba(108,99,212,0.12),transparent_60%)]" />
-            <div className="relative">
-              <h3 className="font-display text-2xl font-bold text-text-primary mb-2">
-                The Novel
-              </h3>
-              <p className="text-text-secondary text-base leading-relaxed max-w-md">
-                The full story of Mackenzie Middle, released chapter by chapter as a
-                free PDF and downloadable audio.
-              </p>
-            </div>
-            <Link href="/novel" className="relative btn-outline mt-6 self-start">
-              Read the Novel
-            </Link>
-          </div>
-
           {/* Community — avatar cell */}
-          <div className="md:col-span-5 card relative overflow-hidden p-8 flex flex-col justify-between min-h-[260px]">
+          <div className="md:col-span-12 card relative overflow-hidden p-8 flex flex-col justify-between min-h-[260px]">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_100%,rgba(232,160,69,0.10),transparent_60%)]" />
             <div className="relative">
               <div className="flex -space-x-3 mb-5">
