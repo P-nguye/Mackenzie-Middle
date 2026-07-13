@@ -1,10 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
   description: "About the Mackenzie Middle series, a YouTube show and novel set in 1980s Edmonton.",
 };
+
+// School photos in /public/assets/Mackenzie MIddle
+const schoolPhotos = [
+  {
+    src: "/assets/Mackenzie MIddle/back of school view.png",
+    caption: "Back of the school",
+  },
+  {
+    src: "/assets/Mackenzie MIddle/parking lot view.png",
+    caption: "The parking lot",
+  },
+  {
+    src: "/assets/Mackenzie MIddle/school interior.png",
+    caption: "Inside the school",
+  },
+  {
+    src: "/assets/Mackenzie MIddle/MacKenzie Middle and surrounding area.png",
+    caption: "Mackenzie Middle and the surrounding area",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -28,20 +49,56 @@ export default function AboutPage() {
             The show is interested in the gap between who people appear to be in the hallway
             and who they actually are. The bully who is afraid. The star athlete who would
             rather be drawing. The sharp editor who is carrying more than she lets on. Edmonton
-            in 1985 is the backdrop: the cold, the hockey, the particular feeling of a city
+            in 1980s is the backdrop: the cold, the hockey, the particular feeling of a city
             growing into itself. But the stories are timeless.
           </p>
         </section>
 
         <section className="border-t border-white/5 pt-14">
           <h2 className="font-display text-text-primary font-bold text-2xl mb-4">The Setting</h2>
-          <p>
+          <p className="mb-8">
             Edmonton, Alberta, 1980s. The Oilers are in the middle of their dynasty run. The oil
             boom has softened into something more complicated. Winter lasts seven months and
             everyone pretends that is fine. Mackenzie Middle School is a real-feeling fictional
             institution on the north side of the city, the kind of place where everyone knows
             each other a little too well and new kids stick out immediately.
           </p>
+
+          {/* School photos */}
+          <figure className="mb-6">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-white/10">
+              <Image
+                src="/assets/Mackenzie MIddle/Mackenzie Middle school front view.png"
+                alt="Front view of Mackenzie Middle School"
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <figcaption className="text-text-muted text-sm mt-2 text-center">
+              Mackenzie Middle School — front view
+            </figcaption>
+          </figure>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {schoolPhotos.map((photo) => (
+              <figure key={photo.src}>
+                <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10">
+                  <Image
+                    src={photo.src}
+                    alt={photo.caption}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 380px"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="text-text-muted text-sm mt-2 text-center">
+                  {photo.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
 
         <section className="border-t border-white/5 pt-14">
