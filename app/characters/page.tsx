@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function CharactersPage() {
-  const students = characters.filter((c) => !c.isStaff);
-  const teachers = characters.filter((c) => c.isStaff);
+  const students = characters.filter((c) => !c.isStaff && !c.group);
+  const teachers = characters.filter((c) => c.isStaff && !c.group);
+  const sloanMansion = characters.filter((c) => c.group === "Sloan Mansion");
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -26,7 +27,11 @@ export default function CharactersPage() {
       </div>
 
       {/* Grid with 2D / 3D toggle — client component */}
-      <CharactersGridToggle students={students} teachers={teachers} />
+      <CharactersGridToggle
+        students={students}
+        teachers={teachers}
+        sloanMansion={sloanMansion}
+      />
     </div>
   );
 }

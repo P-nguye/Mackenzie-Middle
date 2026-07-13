@@ -12,7 +12,6 @@ Mackenzie-Middle/
 │   ├── characters/
 │   │   ├── page.tsx             # Character grid with 2D/3D toggle
 │   │   └── [slug]/page.tsx      # Character detail: bio, relationships, AI chat placeholder
-│   ├── novel/page.tsx           # Chapter list (PDF + audio — content pending)
 │   ├── media/page.tsx           # Wallpapers & soundtrack (assets pending)
 │   ├── community/
 │   │   ├── page.tsx             # Thread list (real-time)
@@ -43,7 +42,6 @@ Mackenzie-Middle/
 | `/characters` | No | Grid; student/staff split; 2D/3D toggle |
 | `/characters/:slug` | No | Bio, relationships, AI chat placeholder |
 | `/about` | No | Series background |
-| `/novel` | No | Chapters listed; content is placeholder |
 | `/media` | No | Downloads listed; assets are placeholder |
 | `/community` | No | Thread list; posting requires auth |
 | `/community/:id` | No | Thread + replies; replying requires auth |
@@ -94,6 +92,5 @@ Renders portrait (image or CSS gradient fallback), grade badge, name, tagline, t
 | User profile page | Live |
 | Message board (threads + replies) | Live |
 | Live chat | Live |
-| Novel chapters | Placeholder — content not yet available |
 | Media downloads | Placeholder — assets not yet available |
 | AI character chat | Placeholder component only |

@@ -27,7 +27,6 @@ export default function Footer() {
               {[
                 { href: "/characters", label: "Characters" },
                 { href: "/media", label: "Media & Downloads" },
-                { href: "/novel", label: "The Novel" },
                 { href: "/about", label: "About the Series" },
               ].map((link) => (
                 <li key={link.href}>
