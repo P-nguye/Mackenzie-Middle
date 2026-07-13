@@ -14,6 +14,9 @@ export interface Character {
   grade: string;
   // Separates students (false) from teachers/admin (true) — use this for filtering, not grade
   isStaff: boolean;
+  // Optional named section (e.g. "Sloan Mansion"). When set, the character is shown
+  // under this section instead of the default Students / Staff split.
+  group?: string;
   traits: string[];
   // CSS gradient shown while artwork is absent — keep even after adding images
   portraitPlaceholder: string;
@@ -465,6 +468,20 @@ export const characters: Character[] = [
     portrait2d: "/assets/characters/2d/Sloan.png",
     relationships: [
       {
+        role: "Brother",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Sloan's younger brother and fellow heir to the Fairchild name. Oliver looks up to Sloan and shares the family's instinct for status and influence — the two are as much allies as siblings when the Fairchild reputation is on the line.",
+      },
+      {
+        role: "Household Chef",
+        person: "Chef Garcon",
+        slug: "chef-garcon",
+        description:
+          "The chef of Sloan Mansion, who has cooked for Sloan since she was a child. He indulges her demands with patient affection and is one of the few constants in her life at home.",
+      },
+      {
         role: "Strategic Alliance",
         person: "Blake Montgomery",
         slug: "blake-montgomery",
@@ -707,6 +724,62 @@ export const characters: Character[] = [
         slug: "mr-ron-little",
         description:
           "Values Mr. Little's energy and positive influence on students, but occasionally considers him too relaxed in his approach to structure and discipline.",
+      },
+    ],
+  },
+
+  // ── Sloan Mansion ──────────────────────────────────────────────────────────
+  {
+    slug: "oliver-fairchild",
+    name: "Oliver Fairchild",
+    tagline: "A Fairchild always gets what a Fairchild wants.",
+    bio: "Oliver Fairchild is Sloan's younger brother and a fellow heir to the towering estate the students simply call Sloan Mansion. Refined, exacting, and endlessly ambitious, Oliver moves through the world expecting the family name to command respect. He idolizes his older sister and rarely lowers his guard, and beneath the polished manners lies someone who measures the world in leverage and legacy.",
+    grade: "Fairchild Heir",
+    isStaff: false,
+    group: "Sloan Mansion",
+    traits: ["Refined", "Ambitious", "Exacting", "Proud"],
+    portraitPlaceholder: "from-rose-900 to-slate-800",
+    relationships: [
+      {
+        role: "Sister",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "Oliver's older sister and fellow heir to the Fairchild name. He idolizes Sloan and shares her instinct for status and influence — the two are as much allies as siblings when the family reputation is at stake.",
+      },
+      {
+        role: "Employer",
+        person: "Chef Garcon",
+        slug: "chef-garcon",
+        description:
+          "Oliver hired Chef Garcon to run the mansion's kitchen and hold its household to an impeccable standard. He values the chef's discretion as much as his cooking, trusting him with far more than the family's meals.",
+      },
+    ],
+  },
+  {
+    slug: "chef-garcon",
+    name: "Chef Garcon",
+    tagline: "The kitchen runs on precision — and so does the house.",
+    bio: "Chef Garcon is the heart of Sloan Mansion, presiding over its grand kitchen with French precision and quiet authority. Trained in Europe long before he came to Edmonton, he treats every meal as a performance and every ingredient as sacred. Though he serves the Fairchilds faithfully, the chef notices everything that happens beneath the mansion's roof — and keeps far more of it to himself than anyone realizes.",
+    grade: "Head Chef",
+    isStaff: false,
+    group: "Sloan Mansion",
+    traits: ["Precise", "Discreet", "Devoted", "Observant"],
+    portraitPlaceholder: "from-emerald-900 to-slate-800",
+    relationships: [
+      {
+        role: "Employer",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Chef Garcon answers directly to Oliver and takes pride in upholding the Fairchild standard. Their relationship is built on trust and discretion — the chef knows the household's secrets and guards them carefully.",
+      },
+      {
+        role: "Looks After",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "Having cooked for Sloan since she was small, the chef is one of the few constants in her life. He indulges her demands with patient affection while quietly keeping an eye on the young woman she is becoming.",
       },
     ],
   },

@@ -10,11 +10,13 @@ type DesignMode = "2d" | "3d";
 interface CharactersGridToggleProps {
   students: Character[];
   teachers: Character[];
+  sloanMansion?: Character[];
 }
 
 export default function CharactersGridToggle({
   students,
   teachers,
+  sloanMansion = [],
 }: CharactersGridToggleProps) {
   const [mode, setMode] = useState<DesignMode>("2d");
 
@@ -65,12 +67,31 @@ export default function CharactersGridToggle({
 
       {/* Staff grid */}
       {teachers.length > 0 && (
-        <section>
+        <section className="mb-16">
           <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
             Staff
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {teachers.map((char) => (
+              <CharacterCard
+                key={char.slug}
+                character={char}
+                href={`/characters/${char.slug}`}
+                designMode={mode}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Sloan Mansion grid */}
+      {sloanMansion.length > 0 && (
+        <section>
+          <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
+            Sloan Mansion
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {sloanMansion.map((char) => (
               <CharacterCard
                 key={char.slug}
                 character={char}
