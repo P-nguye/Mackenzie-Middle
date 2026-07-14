@@ -4,6 +4,8 @@ import Link from "next/link";
 import { characters, getCharacterBySlug } from "@/data/characters";
 import AiChatPlaceholder from "@/components/AiChatPlaceholder";
 import CharacterPortrait from "@/components/CharacterPortrait";
+import CharacterDesignSheets from "@/components/CharacterDesignSheets";
+import { getCharacterSheets } from "@/data/characterSheets";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -28,6 +30,8 @@ export default async function CharacterProfilePage({ params }: Props) {
   const character = getCharacterBySlug(slug);
 
   if (!character) notFound();
+
+  const sheets = getCharacterSheets(slug);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -131,6 +135,11 @@ export default async function CharacterProfilePage({ params }: Props) {
           <AiChatPlaceholder characterName={character.name} />
         </div>
       </div>
+
+      {/* Design sheets — full width, only rendered when artwork exists */}
+      {sheets && (
+        <CharacterDesignSheets characterName={character.name} sheets={sheets} />
+      )}
     </div>
   );
 }
