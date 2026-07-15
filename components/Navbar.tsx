@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/character-chat", label: "Character Chat" },
   { href: "/community", label: "Community" },
   { href: "/about", label: "About" },
+  { href: "/behind-the-scenes", label: "Behind the Scenes" },
 ];
 
 export default function Navbar() {
