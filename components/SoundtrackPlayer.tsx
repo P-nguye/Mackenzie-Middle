@@ -149,9 +149,12 @@ export default function SoundtrackPlayer({ dir, tracks }: Props) {
               }}
               src={src}
               preload="metadata"
-              onLoadedMetadata={(e) =>
-                setDurations((d) => ({ ...d, [i]: e.currentTarget.duration }))
-              }
+              onLoadedMetadata={(e) => {
+                // Read synchronously — currentTarget is nulled before the state
+                // updater below runs.
+                const value = e.currentTarget.duration;
+                setDurations((d) => ({ ...d, [i]: value }));
+              }}
               onTimeUpdate={(e) => {
                 if (current === i) setTime(e.currentTarget.currentTime);
               }}
