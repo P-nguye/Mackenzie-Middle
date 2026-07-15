@@ -739,6 +739,7 @@ export const characters: Character[] = [
     group: "Sloan Mansion",
     traits: ["Refined", "Ambitious", "Exacting", "Proud"],
     portraitPlaceholder: "from-rose-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Oliver.png",
     relationships: [
       {
         role: "Sister",
@@ -766,6 +767,7 @@ export const characters: Character[] = [
     group: "Sloan Mansion",
     traits: ["Precise", "Discreet", "Devoted", "Observant"],
     portraitPlaceholder: "from-emerald-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Garcon.png",
     relationships: [
       {
         role: "Employer",

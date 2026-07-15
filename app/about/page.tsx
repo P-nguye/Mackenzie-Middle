@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SchoolGallery from "@/components/SchoolGallery";
 
 export const metadata: Metadata = {
   title: "About",
@@ -42,6 +43,15 @@ export default function AboutPage() {
             institution on the north side of the city, the kind of place where everyone knows
             each other a little too well and new kids stick out immediately.
           </p>
+        </section>
+
+        <section className="border-t border-white/5 pt-14">
+          <h2 className="font-display text-text-primary font-bold text-2xl mb-4">The School</h2>
+          <p className="mb-6">
+            Concept art of Mackenzie Middle School and the neighbourhood around it. Click any
+            image to open it full-screen and zoom into the details.
+          </p>
+          <SchoolGallery />
         </section>
 
         <section className="border-t border-white/5 pt-14">
