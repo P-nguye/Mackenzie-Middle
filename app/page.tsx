@@ -143,7 +143,7 @@ export default function Home() {
             <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-6">
               See the paint sketches and production art behind Mackenzie Middle — how we designed
               the school, Minh&rsquo;s and Sloan&rsquo;s houses, the storyboards, the soundtrack, and
-              the early-1980s world it all lives in.
+              the 1985 world it all lives in.
             </p>
             <span className="btn-primary w-fit">
               Explore Behind the Scenes

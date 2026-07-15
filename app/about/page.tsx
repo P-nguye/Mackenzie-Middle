@@ -21,7 +21,7 @@ export default function AboutPage() {
           <h2 className="font-display text-text-primary font-bold text-2xl mb-4">The Series</h2>
           <p className="mb-4">
             Mackenzie Middle is a YouTube series and companion novel set in an Edmonton middle
-            school in 1980s. It follows a small cast of students, and one teacher, through the
+            school in 1985. It follows a small cast of students, and one teacher, through the
             social dynamics, small dramas, and occasional genuine crises of life at age twelve
             and thirteen.
           </p>
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <section className="border-t border-white/5 pt-14">
           <h2 className="font-display text-text-primary font-bold text-2xl mb-4">The Setting</h2>
           <p>
-            Edmonton, Alberta, 1980s. The Oilers are in the middle of their dynasty run. The oil
+            Edmonton, Alberta, 1985. The Oilers are in the middle of their dynasty run. The oil
             boom has softened into something more complicated. Winter lasts seven months and
             everyone pretends that is fine. Mackenzie Middle School is a real-feeling fictional
             institution on the north side of the city, the kind of place where everyone knows
