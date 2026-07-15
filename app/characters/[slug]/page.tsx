@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { characters, getCharacterBySlug } from "@/data/characters";
-import AiChatPlaceholder from "@/components/AiChatPlaceholder";
 import CharacterPortrait from "@/components/CharacterPortrait";
 import CharacterDesignSheets from "@/components/CharacterDesignSheets";
 import { getCharacterSheets } from "@/data/characterSheets";
@@ -130,9 +129,6 @@ export default async function CharacterProfilePage({ params }: Props) {
               <p className="text-text-muted text-sm">Character relationship map coming soon.</p>
             )}
           </div>
-
-          {/* AI Chat placeholder */}
-          <AiChatPlaceholder characterName={character.name} />
         </div>
       </div>
 

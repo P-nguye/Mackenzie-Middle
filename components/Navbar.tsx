@@ -10,6 +10,7 @@ import { getCharacterBySlug } from "@/data/characters";
 const navLinks = [
   { href: "/characters", label: "Characters" },
   { href: "/media", label: "Media" },
+  { href: "/character-chat", label: "Character Chat" },
   { href: "/community", label: "Community" },
   { href: "/about", label: "About" },
 ];
