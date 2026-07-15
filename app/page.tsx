@@ -39,6 +39,17 @@ export default function Home() {
                 <Link href="/about" className="btn-outline">
                   About the Series
                 </Link>
+                <a
+                  href="https://www.youtube.com/@eversparkproductions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline"
+                >
+                  <svg className="w-4 h-4 text-[#ff0033]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.5 6.2a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 00.5 6.2 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.8 3.02 3.02 0 002.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 002.12-2.14A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
+                  </svg>
+                  Watch on YouTube
+                </a>
               </div>
             </div>
 
@@ -108,6 +119,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Behind the Scenes — visual banner */}
+      <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto border-t border-white/5">
+        <Link
+          href="/behind-the-scenes"
+          className="group relative block overflow-hidden rounded-2xl border border-white/10 min-h-[300px] sm:min-h-[360px]"
+        >
+          <Image
+            src="/assets/behindTheScene/Designing Mackenzie School and Surrounding Area/Mackenzie Middle and Surrounding area.png"
+            alt="Concept art of Mackenzie Middle and its surrounding neighbourhood"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 1280px) 100vw, 1280px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/70 to-bg-primary/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(108,99,212,0.25),transparent_55%)]" />
+
+          <div className="relative h-full flex flex-col justify-end p-8 sm:p-10 max-w-2xl">
+            <span className="badge badge-violet mb-4 inline-flex w-fit">Behind the Scenes</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-text-primary mb-3">
+              From sketch to school
+            </h2>
+            <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-6">
+              See the paint sketches and production art behind Mackenzie Middle — how we designed
+              the school, Minh&rsquo;s and Sloan&rsquo;s houses, the storyboards, the soundtrack, and
+              the early-1980s world it all lives in.
+            </p>
+            <span className="btn-primary w-fit">
+              Explore Behind the Scenes
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </Link>
+      </section>
+
       {/* Follow the project — asymmetric grid */}
       <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto border-t border-white/5">
         <h2 className="section-title mb-8">Follow the Project</h2>
@@ -162,7 +209,7 @@ export default function Home() {
                 Media & Downloads
               </h3>
               <p className="text-text-secondary text-sm mt-0.5">
-                Free wallpapers and the official soundtrack, released as production wraps.
+                Free wallpapers and the official soundtrack — stream or download them now.
               </p>
             </div>
             <Link href="/media" className="btn-ghost flex-shrink-0 self-start sm:self-center">

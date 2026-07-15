@@ -1,27 +1,41 @@
 import type { Metadata } from "next";
 import MediaCard from "@/components/MediaCard";
+import SoundtrackPlayer, { type Track } from "@/components/SoundtrackPlayer";
 
 export const metadata: Metadata = {
   title: "Media & Downloads",
   description: "Free wallpapers and the Mackenzie Middle official soundtrack, available to download.",
 };
 
+const WALLPAPER_DIR = "/assets/wallpaper";
+
+// Real downloadable wallpapers. `file` is the exact filename in public/assets/wallpaper.
 const wallpapers = [
-  { title: "Edmonton Winter, Desktop" },
-  { title: "Edmonton Winter, Mobile" },
-  { title: "Mackenzie Middle Logo" },
-  { title: "Cast Ensemble" },
-  { title: "The Hallway" },
-  { title: "Class of '85" },
+  { title: "Minh Riding His Bike", file: "minh riding bike.png" },
+  { title: "Shelley and Her Walkman", file: "Shelley listen to her walkman.png" },
+  { title: "Jack Running Track", file: "Jack running track.png" },
+  { title: "Tara Skateboarding", file: "tara skateboarding.png" },
+  { title: "June's Recital", file: "June recital.png" },
+  { title: "Willie Studying", file: "Willie studying.png" },
+  { title: "Blake on His Motorcycle", file: "Blake on his motorcycle.png" },
+  { title: "Blake with His Red Ferrari", file: "Blake with his red ferrari.png" },
+  { title: "Sloan Putting On Earrings", file: "Sloan putting on earrings.png" },
+  { title: "Oliver Steals Some Cookies", file: "Oliver sneek into kitchen to steal cookies.png" },
+  { title: "The Fairchilds", file: "the Fairchilds.png" },
 ];
 
-const tracks = [
-  { title: "Main Theme", subtitle: "2:34" },
-  { title: "The First Day", subtitle: "3:12" },
-  { title: "Lunchroom Blues", subtitle: "2:58" },
-  { title: "After School", subtitle: "4:01" },
-  { title: "Edmonton Snow", subtitle: "3:44" },
-  { title: "Closing Credits", subtitle: "2:21" },
+const SOUNDTRACK_DIR = "/assets/soundtracks";
+
+// Each song is a character's favourite (see the folder's favourite-songs doc).
+// `file` is the exact filename in public/assets/soundtracks.
+const tracks: Track[] = [
+  { title: "Summer Never Knew", file: "Summeer Never Knew.mp3", characterSlug: "shelley-morgan" },
+  { title: "Friday Countdown", file: "Friday Countdown.mp3", characterSlug: "minh-le" },
+  { title: "Finding My Place", file: "Finding My Place.mp3", characterSlug: "june-nakamura" },
+  { title: "Stand Together", file: "Stand Together.mp3", characterSlug: "jack-armstrong" },
+  { title: "Run Like the Wind", file: "Run Like the Wind.mp3", characterSlug: "tara-bennett" },
+  { title: "Perfect on the Outside", file: "Perfect on the Outside.mp3", characterSlug: "sloan-fairchild" },
+  { title: "King of the Hallway", file: "King of the Hallway.mp3", characterSlug: "blake-montgomery" },
 ];
 
 export default function MediaPage() {
@@ -33,8 +47,8 @@ export default function MediaPage() {
           Media & Downloads
         </h1>
         <p className="text-text-secondary text-lg max-w-xl">
-          Wallpapers and soundtrack tracks, free for fans to keep. All assets
-          will be available when production wraps.
+          Wallpapers and soundtrack tracks, free for fans to keep. Stream the songs
+          right here, or download anything to keep.
         </p>
       </div>
 
@@ -42,39 +56,36 @@ export default function MediaPage() {
       <section className="mb-16">
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-display text-text-primary font-bold text-2xl">Wallpapers</h2>
-          <span className="badge badge-amber">Coming Soon</span>
+          <span className="badge badge-amber">{wallpapers.length} free</span>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {wallpapers.map((w) => (
-            <MediaCard key={w.title} title={w.title} type="wallpaper" isPlaceholder />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {wallpapers.map((w) => {
+            const src = `${WALLPAPER_DIR}/${w.file}`;
+            return (
+              <MediaCard
+                key={w.file}
+                title={w.title}
+                type="wallpaper"
+                isPlaceholder={false}
+                image={src}
+                downloadHref={src}
+                downloadName={`Mackenzie Middle — ${w.title}.png`}
+              />
+            );
+          })}
         </div>
       </section>
 
       {/* Soundtrack */}
       <section>
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="font-display text-text-primary font-bold text-2xl">Soundtrack</h2>
-          <span className="badge badge-amber">Coming Soon</span>
+          <span className="badge badge-violet">{tracks.length} tracks</span>
         </div>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {tracks.map((track, i) => (
-            <div key={track.title} className="card p-5 flex items-center gap-4">
-              <span className="font-display text-2xl font-bold text-text-muted w-10 flex-shrink-0">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="text-text-primary text-sm font-medium">{track.title}</p>
-                <p className="text-text-muted text-xs mt-0.5">{track.subtitle}</p>
-              </div>
-              <div className="w-9 h-9 rounded-full bg-bg-elevated flex items-center justify-center flex-shrink-0 opacity-40">
-                <svg className="w-4 h-4 text-accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                </svg>
-              </div>
-            </div>
-          ))}
-        </div>
+        <p className="text-text-secondary text-sm mb-6">
+          Each song is a character&rsquo;s favourite. Press play to listen, or download the MP3.
+        </p>
+        <SoundtrackPlayer dir={SOUNDTRACK_DIR} tracks={tracks} />
       </section>
     </div>
   );

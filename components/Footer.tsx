@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="font-display font-bold text-text-primary">Mackenzie Middle</span>
             </div>
             <p className="text-text-muted text-sm leading-relaxed">
-              A YouTube series and novel set in 1980s Edmonton. Come for the drama, stay for the characters.
+              A YouTube series and novel set in 1985 Edmonton. Come for the drama, stay for the characters.
             </p>
           </div>
 
@@ -71,10 +71,15 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="#"
-              className="text-text-muted text-xs hover:text-accent-amber transition-colors"
-              aria-label="YouTube channel"
+              href="https://www.youtube.com/@eversparkproductions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-text-muted text-xs hover:text-accent-amber transition-colors"
+              aria-label="EverSpark Productions on YouTube"
             >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.5 6.2a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 00.5 6.2 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.8 3.02 3.02 0 002.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 002.12-2.14A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
+              </svg>
               YouTube
             </a>
           </div>
