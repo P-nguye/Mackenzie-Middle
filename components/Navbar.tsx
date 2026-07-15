@@ -58,8 +58,16 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-amber to-accent-violet flex items-center justify-center text-bg-primary font-bold text-sm">
-            MM
+          {/* Logo Container */}
+          <div className="relative w-8 h-8 overflow-hidden rounded-lg">
+            <Image
+              src="/assets/logo/mackenzie middle logo.png" // <-- Replace with your actual file name and extension (e.g., logo.png, logo.svg)
+              alt="Mackenzie Middle Logo"
+              fill
+              sizes="32px"
+              className="object-contain"
+              priority // Ensures the logo loads immediately as it's likely in the header
+            />
           </div>
           <span className="font-display font-bold text-text-primary text-lg tracking-tight group-hover:text-accent-amber transition-colors">
             Mackenzie Middle
