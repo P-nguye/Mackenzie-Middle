@@ -39,6 +39,17 @@ export default function Home() {
                 <Link href="/about" className="btn-outline">
                   About the Series
                 </Link>
+                <a
+                  href="https://www.youtube.com/@eversparkproductions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline"
+                >
+                  <svg className="w-4 h-4 text-[#ff0033]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.5 6.2a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 00.5 6.2 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.8 3.02 3.02 0 002.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 002.12-2.14A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
+                  </svg>
+                  Watch on YouTube
+                </a>
               </div>
             </div>
 
@@ -198,7 +209,7 @@ export default function Home() {
                 Media & Downloads
               </h3>
               <p className="text-text-secondary text-sm mt-0.5">
-                Free wallpapers and the official soundtrack, released as production wraps.
+                Free wallpapers and the official soundtrack — stream or download them now.
               </p>
             </div>
             <Link href="/media" className="btn-ghost flex-shrink-0 self-start sm:self-center">
