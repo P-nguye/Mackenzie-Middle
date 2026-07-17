@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Mackenzie Middle is a fan site and community platform for a fictional 1985 Edmonton-set YouTube series and companion novel. Users browse character profiles (students and staff), read novel chapters, download media, post on a message board, and chat live. Accounts use Firebase Auth; each user selects a character avatar during signup, which persists across community features.
+Mackenzie Middle is a fan site and community platform for a fictional early-1980s Edmonton-set YouTube series and companion novel. Users browse character profiles (students and staff), read novel chapters, download media, post on a message board, and chat live. Accounts use Firebase Auth; each user selects a character avatar during signup, which persists across community features.
 
 ---
 

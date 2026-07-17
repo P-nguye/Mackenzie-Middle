@@ -47,7 +47,7 @@ export default function CharactersPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl">
           Every hallway has its players. Here are the people navigating Mackenzie
-          Middle School in 1985, students and staff alike.
+          Middle School in the early 1980s, students and staff alike.
         </p>
       </div>
 
