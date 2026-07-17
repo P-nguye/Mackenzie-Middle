@@ -30,8 +30,8 @@ const minhImages: GalleryImage[] = [
   { src: `${MINH}/back yard.jpg`, label: "Back yard — sketch" },
 ];
 
-const sloanImages: GalleryImage[] = [
-  { src: `${SLOAN}/Slon_s Mansion.jpg`, label: "Sloan Mansion" },
+const estateImages: GalleryImage[] = [
+  { src: `${SLOAN}/Slon_s Mansion.jpg`, label: "Fairchild Estate" },
   { src: `${SLOAN}/Sloan Foyer.jpg`, label: "The foyer" },
 ];
 
@@ -125,16 +125,18 @@ export default function BehindTheScenesPage() {
           <ZoomGallery images={minhImages} featuredFirst />
         </section>
 
-        {/* Sloan's mansion */}
+        {/* Fairchild Estate */}
         <section className="border-t border-white/5 pt-14">
           <h2 className="font-display text-2xl font-bold text-text-primary mb-3">
-            Designing Sloan&rsquo;s Mansion
+            Designing the Fairchild Estate
           </h2>
           <p className="text-text-secondary leading-relaxed mb-6 max-w-2xl">
-            The Fairchild estate had to feel like a different world entirely — grand, exacting,
-            and a little cold. Here&rsquo;s the mansion and its foyer taking shape.
+            The Fairchild estate had to feel like a different world entirely — grand and
+            exacting, but never cold. It&rsquo;s magnificent because of its architecture; it
+            feels like home because of the people inside it. Here&rsquo;s the mansion and its
+            foyer taking shape.
           </p>
-          <ZoomGallery images={sloanImages} />
+          <ZoomGallery images={estateImages} />
         </section>
 
         {/* Storyboards */}

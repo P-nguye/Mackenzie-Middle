@@ -17,6 +17,7 @@ const EXPR = "/assets/character expressions sheets";
 const PROFILE = "/assets/character profile";
 const PROPS = "/assets/character props";
 const WARDROBE = "/assets/character warerobe guide";
+const ESTATE = "/assets/fairchildEstate";
 
 export const characterSheets: Record<string, CharacterSheets> = {
   "minh-le": {
@@ -70,6 +71,12 @@ export const characterSheets: Record<string, CharacterSheets> = {
   },
   "chef-garcon": {
     profile: `${PROFILE}/Chef Garcon Character Profile.png`,
+  },
+  // McMurphy's sheet ships with the Fairchild Estate artwork rather than in the
+  // character profile folder. The remaining estate characters (Charles, Victoria,
+  // Pierre, Marian) have no sheets yet, so their tabs stay hidden.
+  "thomas-mcmurphy": {
+    profile: `${ESTATE}/Thomas McMurphy use for headshot.png`,
   },
 };
 

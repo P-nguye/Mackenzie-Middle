@@ -4,7 +4,9 @@ import Link from "next/link";
 import { characters, getCharacterBySlug } from "@/data/characters";
 import CharacterPortrait from "@/components/CharacterPortrait";
 import CharacterDesignSheets from "@/components/CharacterDesignSheets";
+import CharacterFullProfile from "@/components/CharacterFullProfile";
 import { getCharacterSheets } from "@/data/characterSheets";
+import { getCharacterProfile } from "@/data/characterProfiles";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -31,6 +33,7 @@ export default async function CharacterProfilePage({ params }: Props) {
   if (!character) notFound();
 
   const sheets = getCharacterSheets(slug);
+  const fullProfile = getCharacterProfile(slug);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -90,6 +93,14 @@ export default async function CharacterProfilePage({ params }: Props) {
           <p className="text-text-secondary text-base leading-relaxed max-w-[65ch]">
             {character.bio}
           </p>
+
+          {/* Long-form profile — only for characters with an entry in characterProfiles */}
+          {fullProfile && (
+            <CharacterFullProfile
+              characterName={character.name}
+              profile={fullProfile}
+            />
+          )}
 
           {/* Relationships */}
           <div className="border-t border-white/5 pt-8">
