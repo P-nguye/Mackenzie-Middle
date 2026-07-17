@@ -11,6 +11,9 @@ interface CharacterCardProps {
   // Passed by CharactersGridToggle to switch all cards between design modes.
   // When undefined (e.g. home page carousel), the card renders the gradient placeholder.
   designMode?: "2d" | "3d";
+  // Replaces the `grade` badge for this card only — lets one section label a
+  // character differently (e.g. "Eldest Sister" on the Fairchild Estate grid).
+  badgeLabel?: string;
 }
 
 export default function CharacterCard({
@@ -20,6 +23,7 @@ export default function CharacterCard({
   selected = false,
   onSelect,
   designMode,
+  badgeLabel,
 }: CharacterCardProps) {
   const portrait =
     designMode === "2d"
@@ -78,7 +82,7 @@ export default function CharacterCard({
             character.isStaff ? "text-accent-violet" : "text-accent-amber"
           }`}
         >
-          {character.grade}
+          {badgeLabel ?? character.grade}
         </p>
       </div>
 

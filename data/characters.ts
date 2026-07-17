@@ -14,7 +14,7 @@ export interface Character {
   grade: string;
   // Separates students (false) from teachers/admin (true) — use this for filtering, not grade
   isStaff: boolean;
-  // Optional named section (e.g. "Sloan Mansion"). When set, the character is shown
+  // Optional named section (e.g. "Fairchild Estate"). When set, the character is shown
   // under this section instead of the default Students / Staff split.
   group?: string;
   traits: string[];
@@ -76,11 +76,11 @@ export const characters: Character[] = [
           "Tara teases Minh endlessly — not out of cruelty, but because his reactions are funny. She frequently tries to help him with Shelley, though her matchmaking rarely goes according to plan.",
       },
       {
-        role: "Social Rival",
+        role: "Trusted Friend",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Sloan initially views Minh as socially insignificant. Over time, his emotional authenticity and quiet resistance to social pressure become harder to dismiss — and more frustrating to her.",
+          "Sloan becomes one of Minh's closest friends at Mackenzie Middle. She admires his creativity, imagination, and optimism, and his enthusiasm often encourages her to step outside her comfort zone. Their friendship reminds them both that genuine connection has nothing to do with wealth or status.",
       },
       {
         role: "Greatest Rival",
@@ -138,11 +138,11 @@ export const characters: Character[] = [
           "A comfortable friendship built on trust and familiarity. Many classmates assume they would make a good couple. Neither sees it that way.",
       },
       {
-        role: "Social Rival",
+        role: "Kindred Spirit",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Sloan views Shelley as competition — not because Shelley seeks popularity, but because she attracts people naturally through kindness that status cannot buy. Shelley tries to be friendly, but gradually realizes Sloan's intentions aren't always sincere.",
+          "Two girls who lead by example rather than by popularity. Shelley never treats Sloan as \"the wealthy girl,\" and Sloan never trades on the family name — which is exactly why they understand each other. Both are the person their friends come to for advice.",
       },
       {
         role: "Complicated",
@@ -200,11 +200,11 @@ export const characters: Character[] = [
           "Jack constantly tries to pull Willie out of his comfort zone. Willie usually resists — then somehow ends up joining anyway. Despite their differences, they become good friends.",
       },
       {
-        role: "Invisible To",
+        role: "Friend",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Sloan considers Willie socially invisible, and Willie barely notices. His complete indifference to her wealth and status is one of the things that frustrates her most.",
+          "Willie is completely indifferent to the Fairchild name, which is precisely what Sloan likes about him. He treats her as just another classmate, and she finds his bluntness refreshing after a lifetime of people being careful around her.",
       },
       {
         role: "Warns Against",
@@ -262,11 +262,11 @@ export const characters: Character[] = [
           "A natural understanding as fellow immigrants and academically focused students. Their friendship is calm, respectful, and low-pressure — built on shared experience.",
       },
       {
-        role: "Quiet Rival",
+        role: "Quiet Understanding",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Sloan initially dismisses June as socially insignificant. But June's quiet confidence and Jack's interest in her slowly challenge Sloan's assumptions, creating underlying tension between them.",
+          "Both are quiet girls who notice more than they say, and both carry expectations they never asked for — June her family's traditions, Sloan the weight of the Fairchild name. Neither needs to fill a silence, which is why their conversations tend to matter.",
       },
       {
         role: "Targeted By",
@@ -324,11 +324,11 @@ export const characters: Character[] = [
           "June fascinates Jack. Her quiet, thoughtful nature draws him in. For perhaps the first time, Jack finds himself slowing down and listening. Their connection becomes one of the most important emotional arcs in the series.",
       },
       {
-        role: "Uninterested In",
+        role: "Close Friend",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Sloan assumes Jack should be interested in her. He isn't. His lack of interest frustrates Sloan and fuels her rivalry with June.",
+          "One of Sloan's closest friends outside the Fairchild world, built on school and a shared love of tennis. Jack treats her as an equal rather than as \"the wealthy girl\" — something she quietly appreciates. He's a regular visitor to the estate, where Oliver trails him around asking questions.",
       },
       {
         role: "Rival",
@@ -386,11 +386,11 @@ export const characters: Character[] = [
           "One of her closest friends, matching her energy and enthusiasm. For years Tara quietly develops deeper feelings for Jack, hiding them behind jokes and teasing. Watching him become interested in June is one of the hardest things she faces.",
       },
       {
-        role: "Rivals With",
+        role: "Unlikely Friend",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "They clash almost immediately. Sloan expects admiration — Tara offers sarcasm. Their rivalry produces some of the sharpest and funniest exchanges in the series.",
+          "Opposites who work: Tara is loud where Sloan is composed, and Tara's complete refusal to be impressed by the estate is exactly what puts Sloan at ease. Tara teases her mercilessly about the mansion, and Sloan gives it right back — gently.",
       },
       {
         role: "Distrusts",
@@ -441,11 +441,11 @@ export const characters: Character[] = [
           "His central rival. Jack values friendship; Blake values winning. Jack builds relationships; Blake tests them. As Blake becomes involved with those Jack cares about, their rivalry escalates into one of the series' defining conflicts.",
       },
       {
-        role: "Strategic Alliance",
+        role: "Cannot Impress",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Not romantic, but strategic. Both understand influence and control. Together they form an unofficial alliance — students begin calling them the king and queen of Mackenzie Middle.",
+          "Blake assumes the wealthiest girl in school is his natural ally, and is baffled when she wants nothing to do with the arrangement. Sloan is unfailingly polite to him and keeps him at arm's length — she has been around real influence her whole life, and she recognizes a performance when she sees one.",
       },
       {
         role: "Greatest Rival",
@@ -459,76 +459,97 @@ export const characters: Character[] = [
   {
     slug: "sloan-fairchild",
     name: "Sloan Fairchild",
-    tagline: "If people are going to talk, give them something worth talking about.",
-    bio: "Sloan Fairchild is the queen bee of Mackenzie Middle. Wealthy, confident, and fully aware of the attention she commands, Sloan moves through the school like she owns it. While other students worry about fitting in, Sloan decides who fits in. Together with Blake, she forms the dominant social force — and the central opposition to Minh and his friends.",
+    tagline: "Kindness is remembered far longer than success.",
+    bio: "Sloan Fairchild is the eldest child of Charles and Victoria Fairchild and the future heir to one of Edmonton's most respected families. Raised in the elegance of the Fairchild Estate, she has enjoyed every opportunity life could offer, yet her parents have worked hard to ensure she grows up humble, compassionate, and respectful. Quiet by nature but remarkably perceptive, she is the person friends turn to when they need advice — and at Mackenzie Middle she wants to be known for who she is, not for the mansion she lives in.",
     grade: "Grade 8",
     isStaff: false,
-    traits: ["Confident", "Strategic", "Charismatic", "Status-conscious"],
+    traits: ["Kind-hearted", "Thoughtful", "Compassionate", "Responsible"],
     portraitPlaceholder: "from-fuchsia-900 to-slate-800",
     portrait2d: "/assets/characters/2d/Sloan.png",
     relationships: [
       {
-        role: "Brother",
+        role: "Father",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
+        description:
+          "Sloan's greatest role model. Charles never interrupts — he listens first, then offers advice. He encourages her to become her own person rather than simply following family expectations, and teaches her that character matters more than wealth. She hopes to make him proud not by following his career, but by living according to his values.",
+      },
+      {
+        role: "Mother",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Sloan's closest confidante. Victoria has taught her grace, compassion, and the importance of treating every person with respect. Whether they're playing tennis on the family court, visiting a gallery, or talking over tea, Victoria is her greatest source of guidance. Their relationship is built on trust and unconditional love.",
+      },
+      {
+        role: "Younger Brother",
         person: "Oliver Fairchild",
         slug: "oliver-fairchild",
         description:
-          "Sloan's younger brother and fellow heir to the Fairchild name. Oliver looks up to Sloan and shares the family's instinct for status and influence — the two are as much allies as siblings when the Fairchild reputation is on the line.",
+          "Oliver is Sloan's favorite person to tease. She helps him with homework, protects him when necessary, and encourages his endless imagination. He follows her around the estate believing she can solve any problem — and though they argue like normal siblings, she would do anything for him.",
       },
       {
-        role: "Household Chef",
-        person: "Chef Garcon",
+        role: "Mentor",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Pierre has watched Sloan grow from a little girl into a young woman. He has quietly taught her etiquette, patience, and responsibility, and whenever she faces a difficult decision his calm wisdom helps her see it more clearly. She considers him one of her greatest mentors — almost another grandfather.",
+      },
+      {
+        role: "Baking Partner",
+        person: "Chef Garçon",
         slug: "chef-garcon",
         description:
-          "The chef of Sloan Mansion, who has cooked for Sloan since she was a child. He indulges her demands with patient affection and is one of the few constants in her life at home.",
+          "Chef Garçon encourages Sloan's love of cooking and baking. Unlike Oliver, who sneaks cookies, Sloan enjoys learning recipes and decorating desserts beside him. They discuss French culture, travel, and food while preparing meals, and he always calls her \"Mademoiselle Sloan.\"",
       },
       {
-        role: "Strategic Alliance",
-        person: "Blake Montgomery",
-        slug: "blake-montgomery",
+        role: "Like An Older Sister",
+        person: "Marian Bennett",
+        slug: "marian-bennett",
         description:
-          "Not romantic — strategic. Both understand influence, attention, and control. Together they form an unofficial alliance, becoming the dominant social force at Mackenzie Middle. Students call them the king and queen of the school.",
+          "Marian is the older sister Sloan never had. She has celebrated birthdays, comforted Sloan after disappointments, helped her prepare for dances, and quietly supported her through life's challenges. When Sloan needs advice she isn't ready to discuss with her parents, she goes to Marian — who always listens without judgment.",
       },
       {
-        role: "Dismisses",
+        role: "Protector",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "McMurphy has driven Sloan to school for years. He taught her to ride a bicycle safely, to stay calm in difficult situations, and the importance of protecting others. He is fiercely protective but never overbearing — if Sloan is upset, he usually notices long before anyone else. She feels safer whenever he's nearby.",
+      },
+      {
+        role: "Trusted Friend",
         person: "Minh Le",
         slug: "minh-le",
         description:
-          "Sloan initially views Minh as socially insignificant. But his emotional authenticity and quiet resistance to social pressure become harder to dismiss — and more frustrating to her.",
+          "Minh becomes one of Sloan's most trusted friends at Mackenzie Middle. She admires his creativity, imagination, and optimism, and his enthusiasm encourages her to step outside her comfort zone and enjoy the simpler moments of life. Their friendship reminds her that genuine connections have nothing to do with wealth or status.",
       },
       {
-        role: "Competition",
-        person: "Shelley Morgan",
-        slug: "shelley-morgan",
-        description:
-          "Sloan sees Shelley as a threat — not because Shelley competes, but because she doesn't need to. Shelley attracts people through kindness that wealth and status cannot replicate.",
-      },
-      {
-        role: "Pursues",
+        role: "Close Friend",
         person: "Jack Armstrong",
         slug: "jack-armstrong",
         description:
-          "Sloan expects Jack to be interested in her. He isn't. His indifference is one of her first real social challenges — she interprets it not as rejection but as something to overcome.",
+          "One of Sloan's closest friends outside the Fairchild world. Their friendship grows naturally through school and a shared love of tennis. Jack treats her as an equal rather than as \"the wealthy girl,\" something she quietly appreciates. When he visits the estate, she enjoys showing him that behind the mansion is simply a family trying to live normal lives.",
       },
       {
-        role: "Quiet Rival",
-        person: "June Nakamura",
-        slug: "june-nakamura",
+        role: "Kindred Spirit",
+        person: "Shelley Morgan",
+        slug: "shelley-morgan",
         description:
-          "June doesn't challenge Sloan socially — she simply exists as someone Jack genuinely connects with, making her a quiet but significant rival in Sloan's eyes.",
+          "Both girls lead by example rather than by popularity, and both are the person their friends come to for advice. Shelley never treats Sloan as the wealthy girl, which is exactly why they understand one another.",
       },
       {
-        role: "Rivals With",
+        role: "Unlikely Friend",
         person: "Tara Bennett",
         slug: "tara-bennett",
         description:
-          "Tara is Sloan's opposite in every way. Tara openly resists Sloan's dominance with humor and sarcasm, deflating her authority and creating an ongoing rivalry of sharp exchanges.",
+          "Tara's refusal to be impressed by the estate is exactly what puts Sloan at ease. Tara teases her endlessly about the mansion; Sloan gives it right back, gently. Their opposite energies make the friendship work.",
       },
       {
-        role: "Invisible To",
-        person: "Willie Lin",
-        slug: "willie-lin",
+        role: "Keeps At A Distance",
+        person: "Blake Montgomery",
+        slug: "blake-montgomery",
         description:
-          "Willie is completely invisible to Sloan's social world. His total lack of interest in status and popularity is confusing to her — she is used to influencing people, and Willie simply doesn't participate.",
+          "Blake assumes the wealthiest girl in school is his natural ally. Sloan is unfailingly polite and entirely uninterested — she has been around real influence her whole life and recognizes a performance when she sees one.",
       },
     ],
   },
@@ -728,60 +749,455 @@ export const characters: Character[] = [
     ],
   },
 
-  // ── Sloan Mansion ──────────────────────────────────────────────────────────
+  // ── Fairchild Estate ───────────────────────────────────────────────────────
+  // The Fairchild family and the household staff of the estate. Sloan also lives
+  // here, but she stays in the Students block above — the Estate section on the
+  // characters page lists her explicitly by slug.
+  {
+    slug: "charles-fairchild",
+    name: "Charles Fairchild",
+    tagline: "Money can buy many things, son — but it can never buy your name. You earn that yourself.",
+    bio: "Charles Fairchild was born into one of Edmonton's most successful business families and chose to keep building rather than live off the inheritance. Under his leadership, Fairchild Holdings grew into one of Alberta's most respected privately owned companies, with investments in energy, commercial real estate, and office developments across Western Canada. He leaves at 7:00 AM and returns at 6:00 PM — and the moment he walks through the front door, business stays outside. Dinner is family time.",
+    grade: "Father",
+    isStaff: false,
+    group: "Fairchild Estate",
+    traits: ["Calm Under Pressure", "Honest", "Disciplined", "Humble"],
+    portraitPlaceholder: "from-slate-800 to-gray-900",
+    portrait2d: "/assets/characters/2d/CharlesFairchild.png",
+    relationships: [
+      {
+        role: "Wife",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Charles and Victoria are true partners. They discuss important decisions together, and he values her advice more than anyone else's — when something difficult comes up he asks \"What do you think?\" before making up his mind. Even after many years of marriage they still enjoy quiet evenings together once the children are asleep.",
+      },
+      {
+        role: "Daughter",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "Sloan can always talk to her father. Charles never interrupts — he listens first, then offers advice. He encourages her to become her own person rather than simply following family expectations.",
+      },
+      {
+        role: "Son",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Charles loves spending time with Oliver and attends baseball games, school events, and hockey practices whenever possible. If business makes him miss one, he makes every effort to be at the next. Oliver doesn't admire his father's money — he admires his father's integrity.",
+      },
+      {
+        role: "Part Of The Family",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Charles has known Pierre since he was a young boy and doesn't think of him as \"the butler.\" Pierre has served beside him for most of his adult life and often acts as his closest advisor on household matters.",
+      },
+      {
+        role: "Complete Trust",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "McMurphy isn't simply Charles's chauffeur — he's one of the few people Charles completely trusts, with the two things that matter most: his family and his life. During long drives downtown they sometimes discuss business, sometimes baseball, sometimes nothing at all. Neither man feels the need to fill the silence.",
+      },
+      {
+        role: "Hired Him",
+        person: "Chef Garçon",
+        slug: "chef-garcon",
+        description:
+          "Charles persuaded Chef Garçon to leave Europe and become the family's personal chef. They share a respect for discipline, precision, and professionalism, and Charles thanks him personally after every formal dinner.",
+      },
+    ],
+  },
+  {
+    slug: "victoria-fairchild",
+    name: "Victoria Fairchild",
+    tagline: "The finest homes are remembered not for their size, but for how they make people feel.",
+    bio: "Victoria Fairchild is the heart of the Fairchild family. While Charles oversees the family's business empire, Victoria oversees something far more important — their home. Gracious, cultured, and compassionate, she has an effortless elegance that puts people at ease, and she believes wealth should create opportunities rather than distance people from one another. A homemaker, community volunteer, and patron of the arts, she has a gift for making everyone — from business executives to delivery drivers — feel equally important. Visitors often leave the estate remembering Victoria's warmth long after they've admired the mansion.",
+    grade: "Mother",
+    isStaff: false,
+    group: "Fairchild Estate",
+    traits: ["Elegant", "Compassionate", "Diplomatic", "Warm"],
+    portraitPlaceholder: "from-amber-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Victoria.png",
+    relationships: [
+      {
+        role: "Husband",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
+        description:
+          "True partners. Victoria understands the pressures of leading a large company and provides the calm balance Charles needs. He values her advice above anyone else's and rarely makes a difficult decision without asking what she thinks.",
+      },
+      {
+        role: "Daughter",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "Victoria shares a special bond with Sloan, built on trust. She encourages her to think independently and never pressures her to fit into society's expectations. One of her favorite ways to spend time with Sloan is on the family's private tennis court, where neither keeps score very seriously and the conversations between games matter more than the match. She wants Sloan to become a woman of character before a woman of status.",
+      },
+      {
+        role: "Son",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Oliver still runs into his mother's arms after school. Victoria never discourages his curiosity or imagination — she helps with school projects, attends his baseball games, and always makes time for his latest adventure. She often reminds him: \"Being kind will take you farther than being important.\"",
+      },
+      {
+        role: "Coordinates With",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Victoria appreciates Pierre's impeccable taste and organization. Together they coordinate charity galas, dinner parties, and social events, and she oversees the household alongside him each morning.",
+      },
+      {
+        role: "Shared Taste",
+        person: "Chef Garçon",
+        slug: "chef-garcon",
+        description:
+          "Victoria and Chef Garçon share an appreciation for fine art and beautiful presentation. She frequently asks him to design elegant menus for charity galas hosted at the mansion, and together they enjoy discussing French culture, travel, and classic cuisine. He picks fresh herbs from her gardens, insisting \"the best seasoning grows in the garden.\"",
+      },
+      {
+        role: "Asks, Never Orders",
+        person: "Marian Bennett",
+        slug: "marian-bennett",
+        description:
+          "Marian officially assists Victoria and maintains the family's private quarters, but Victoria treats her with tremendous respect — rather than giving orders she asks, \"Could you help me with something?\" She sees Marian as part of the household rather than an employee.",
+      },
+      {
+        role: "Never Worries",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "Victoria appreciates McMurphy's professionalism and kindness, and never worries when the children are with him. She often reminds him: \"You're part of this family too.\"",
+      },
+    ],
+  },
   {
     slug: "oliver-fairchild",
     name: "Oliver Fairchild",
-    tagline: "A Fairchild always gets what a Fairchild wants.",
-    bio: "Oliver Fairchild is Sloan's younger brother and a fellow heir to the towering estate the students simply call Sloan Mansion. Refined, exacting, and endlessly ambitious, Oliver moves through the world expecting the family name to command respect. He idolizes his older sister and rarely lowers his guard, and beneath the polished manners lies someone who measures the world in leverage and legacy.",
-    grade: "Fairchild Heir",
+    tagline: "Every day should have at least one adventure.",
+    bio: "Oliver James Fairchild is ten years old, in Grade 5, and has never known anything but life at the Fairchild Estate. Surrounded by luxury, he remains remarkably down-to-earth, preferring tree forts, bicycles, hockey cards, and cookies over expensive toys. Unlike his older sister Sloan, Oliver doesn't yet feel the weight of the Fairchild name — he simply enjoys being a kid. He has a mischievous side but never acts out of cruelty, and if someone is lonely, Oliver is usually the first to notice. Although the estate employs many people, he considers them family rather than staff.",
+    grade: "Grade 5",
     isStaff: false,
-    group: "Sloan Mansion",
-    traits: ["Refined", "Ambitious", "Exacting", "Proud"],
+    group: "Fairchild Estate",
+    traits: ["Curious", "Kind-hearted", "Energetic", "Imaginative"],
     portraitPlaceholder: "from-rose-900 to-slate-800",
     portrait2d: "/assets/characters/2d/Oliver.png",
     relationships: [
       {
-        role: "Sister",
+        role: "Father",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
+        description:
+          "Oliver admires his father enormously. Charles is busy running businesses, but whenever he's home Oliver has his full attention — tossing a baseball, working on a puzzle, watching hockey. Oliver hopes one day he'll grow up to be just like his dad.",
+      },
+      {
+        role: "Mother",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Victoria is Oliver's greatest source of comfort. She encourages his imagination while gently teaching him kindness and respect, reads with him before bedtime, and watches him play tennis in the backyard. Oliver knows that no matter what happens, his mother will always listen.",
+      },
+      {
+        role: "Older Sister",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Oliver's older sister and fellow heir to the Fairchild name. He idolizes Sloan and shares her instinct for status and influence — the two are as much allies as siblings when the family reputation is at stake.",
+          "Sloan is Oliver's hero. She helps with homework, gives advice, and occasionally rescues him when one of his adventures gets a little out of hand. They tease each other like all siblings, but they're incredibly close — Oliver secretly thinks Sloan can solve almost any problem.",
       },
       {
-        role: "Employer",
-        person: "Chef Garcon",
+        role: "Hero",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "Oliver absolutely idolizes McMurphy and believes he knows everything. Every Saturday morning the two play baseball, and McMurphy teaches him throwing mechanics, sportsmanship, camping skills, bicycle maintenance, and the importance of keeping promises. He never tells war stories — he teaches courage through actions instead. Oliver dreams that one day he'll drive as well as McMurphy.",
+      },
+      {
+        role: "Partner In Mischief",
+        person: "Chef Garçon",
         slug: "chef-garcon",
         description:
-          "Oliver hired Chef Garcon to run the mansion's kitchen and hold its household to an impeccable standard. He values the chef's discretion as much as his cooking, trusting him with far more than the family's meals.",
+          "Oliver is constantly sneaking into the kitchen hoping to steal cookies before dinner, and Chef Garçon always pretends to be surprised: \"These cookies? They disappeared by themselves.\" Everyone knows he leaves a few where Oliver can \"accidentally\" find them. Oliver proudly declares, \"Chef makes the best cookies in Canada.\"",
+      },
+      {
+        role: "Tries To Make Him Laugh",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Pierre politely pretends not to notice when Oliver slides down the grand staircase or races through the halls, and quietly teaches him manners and patience without ever sounding like he's giving a lesson. Oliver tries constantly to make him laugh — Pierre pretends to remain serious, and usually loses the battle. Oliver calls him \"the nicest butler in the world.\"",
+      },
+      {
+        role: "Almost An Older Sister",
+        person: "Marian Bennett",
+        slug: "marian-bennett",
+        description:
+          "Marian patches torn shirts, finds lost toys, and always knows where Oliver left his hockey stick. She sneaks him an extra cookie, helps him finish school projects, and sometimes joins him in harmless practical jokes — provided Pierre never finds out. Whenever Oliver has a bad day, she somehow knows exactly how to cheer him up.",
+      },
+      {
+        role: "Looks Up To",
+        person: "Jack Armstrong",
+        slug: "jack-armstrong",
+        description:
+          "Jack quickly becomes one of Oliver's favorite visitors. Whenever he comes over to play tennis with Sloan, Oliver follows him around asking questions about school, sports, and life at Mackenzie Middle. Jack treats Oliver like a younger brother.",
+      },
+      {
+        role: "Fascinated By",
+        person: "Minh Le",
+        slug: "minh-le",
+        description:
+          "Oliver enjoys Minh's kindness and creativity, and is fascinated by his stories, hobbies, and ideas. Minh always takes time to include Oliver, making him feel like part of the group despite being younger.",
+      },
+    ],
+  },
+  {
+    slug: "pierre-laurent",
+    name: "Pierre Laurent",
+    tagline: "Excellence is found in the smallest details.",
+    bio: "Pierre Laurent has given nearly three decades to the Fairchild family as butler and estate manager. Raised in Montreal, he learned traditional hospitality and etiquette from his father, who managed one of Canada's finest historic hotels, and joined the household shortly after Charles and Victoria were married. Calm, dignified, and exceptionally organized, he believes true professionalism means anticipating people's needs before they ask — and that kindness and discipline matter equally. He insists he is \"simply doing his job.\" The Fairchilds consider him part of the family. Oliver once called him \"The General of the Mansion,\" and the nickname quietly stuck.",
+    grade: "Butler",
+    isStaff: true,
+    group: "Fairchild Estate",
+    traits: ["Dignified", "Organized", "Discreet", "Quietly Humorous"],
+    portraitPlaceholder: "from-slate-700 to-gray-900",
+    portrait2d: "/assets/characters/2d/Pierre.png",
+    relationships: [
+      {
+        role: "Serves",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
+        description:
+          "Charles trusts Pierre completely. Pierre has served beside him for most of his adult life and often acts as his closest advisor on household matters. Charles doesn't think of him as \"the butler\" — Pierre is part of the family.",
+      },
+      {
+        role: "Coordinates With",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Victoria appreciates Pierre's impeccable taste and organization. Together they coordinate charity galas, dinner parties, and social events.",
+      },
+      {
+        role: "Mentors",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "Pierre has watched Sloan grow from a little girl into a young woman. He quietly worries about her happiness and offers gentle advice without being overbearing, having taught her etiquette, patience, and responsibility over the years. To Sloan, he is almost like another grandfather.",
+      },
+      {
+        role: "Loses The Battle",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Oliver constantly tries to make Pierre laugh. Pierre pretends to remain serious — but usually loses. He secretly keeps a small tin of cookies behind his pantry desk just for Oliver.",
+      },
+      {
+        role: "Mentors",
+        person: "Marian Bennett",
+        slug: "marian-bennett",
+        description:
+          "Pierre acts as Marian's mentor, patiently teaching her the traditions of service while encouraging her warmth and personality. He reminds her: \"People remember how you make them feel far longer than they remember what you served.\" He secretly thinks she will someday become head housekeeper.",
+      },
+      {
+        role: "Mutual Respect",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "Pierre keeps the mansion running; McMurphy protects it. Their friendship is built on mutual respect, and every morning before the household awakens they share coffee while reviewing the day's schedule. Neither needs many words.",
+      },
+      {
+        role: "Perfect Timing",
+        person: "Chef Garçon",
+        slug: "chef-garcon",
+        description:
+          "The two have worked together long enough that they rarely need words. Pierre manages the dining room while Chef Garçon commands the kitchen, and their timing is so precise that formal dinners appear effortless.",
       },
     ],
   },
   {
     slug: "chef-garcon",
-    name: "Chef Garcon",
-    tagline: "The kitchen runs on precision — and so does the house.",
-    bio: "Chef Garcon is the heart of Sloan Mansion, presiding over its grand kitchen with French precision and quiet authority. Trained in Europe long before he came to Edmonton, he treats every meal as a performance and every ingredient as sacred. Though he serves the Fairchilds faithfully, the chef notices everything that happens beneath the mansion's roof — and keeps far more of it to himself than anyone realizes.",
+    name: "Chef Garçon",
+    tagline: "A meal made with love is always remembered.",
+    bio: "Born in Lyon, France, Jean-Luc Garçon trained in some of Europe's finest culinary schools before cooking in luxury hotels and private estates across France and Switzerland. His reputation for refined French cuisine eventually brought him to Canada, where Charles Fairchild persuaded him to become the family's personal chef five years ago. Warm, humorous, and endlessly passionate about cooking, he insists on perfection in the kitchen but is relaxed and quick to laugh outside it. Although his meals are worthy of five-star restaurants, he believes the greatest compliment is seeing a family gathered around one table.",
     grade: "Head Chef",
-    isStaff: false,
-    group: "Sloan Mansion",
-    traits: ["Precise", "Discreet", "Devoted", "Observant"],
+    isStaff: true,
+    group: "Fairchild Estate",
+    traits: ["Warm", "Patient", "Passionate", "Humorous"],
     portraitPlaceholder: "from-emerald-900 to-slate-800",
     portrait2d: "/assets/characters/2d/Garcon.png",
     relationships: [
       {
         role: "Employer",
-        person: "Oliver Fairchild",
-        slug: "oliver-fairchild",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
         description:
-          "Chef Garcon answers directly to Oliver and takes pride in upholding the Fairchild standard. Their relationship is built on trust and discretion — the chef knows the household's secrets and guards them carefully.",
+          "Chef Garçon has enormous respect for Charles, who values the same discipline and professionalism he does. Charles trusts him completely and thanks him personally after formal dinners. However long the workday runs, dinner is always ready when Charles returns home.",
       },
       {
-        role: "Looks After",
+        role: "Shared Taste",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Victoria and Chef Garçon share an appreciation for fine art and beautiful presentation. She asks him to design elegant menus for charity galas, and together they discuss French culture, travel, and classic cuisine. He picks fresh herbs from her gardens: \"The best seasoning grows in the garden.\"",
+      },
+      {
+        role: "Baking Partner",
         person: "Sloan Fairchild",
         slug: "sloan-fairchild",
         description:
-          "Having cooked for Sloan since she was small, the chef is one of the few constants in her life. He indulges her demands with patient affection while quietly keeping an eye on the young woman she is becoming.",
+          "Sloan enjoys helping Chef Garçon bake cookies and desserts. Unlike Oliver, she follows recipes exactly — he appreciates her patience and attention to detail and often lets her decorate pastries for special occasions. She sometimes asks him about France, hoping to visit one day.",
+      },
+      {
+        role: "Greatest Challenge",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Oliver is both Chef Garçon's greatest challenge and greatest source of laughter, constantly sneaking into the kitchen for cookies. The chef always pretends to be surprised, and everyone knows he intentionally leaves a few where Oliver can find them. The two share a wonderful grandfather-grandson relationship.",
+      },
+      {
+        role: "Perfect Timing",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Pierre manages the dining room; Chef Garçon commands the kitchen. Together they orchestrate every formal dinner with perfect timing. As the chef jokes: \"Pierre conducts the dining room. I conduct the orchestra in the kitchen.\"",
+      },
+      {
+        role: "Close Friend",
+        person: "Marian Bennett",
+        slug: "marian-bennett",
+        description:
+          "One of Chef Garçon's closest friends in the household. She helps prepare dining rooms before important events; he sends her home with leftovers after large dinners and prepares little desserts just for her, which she happily volunteers to \"taste test.\" They tease each other like brother and sister.",
+      },
+      {
+        role: "Keeps A Plate Warm",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "Chef Garçon has deep respect for McMurphy's military service. Whenever McMurphy returns late from driving the family, a hot meal is quietly waiting in the kitchen. Neither man talks much about the past, but they understand one another without many words. \"Every soldier deserves a warm meal.\"",
+      },
+    ],
+  },
+  {
+    slug: "marian-bennett",
+    name: "Marian Bennett",
+    tagline: "A little kindness can make a big house feel like a home.",
+    bio: "Marian Bennett joined the Fairchild household at twenty-four, shortly after finishing college. Intelligent, cheerful, and endlessly energetic, she quickly became indispensable. Officially she assists Victoria and maintains the family's private living quarters, but her role extends far beyond housekeeping — she is the person everyone turns to when they need help, advice, or simply someone to brighten the day. Although she works in one of Edmonton's wealthiest homes, she never measures people by money or status, only by how they treat others. The mansion feels more alive whenever Marian is around.",
+    grade: "Maid",
+    isStaff: true,
+    group: "Fairchild Estate",
+    traits: ["Cheerful", "Funny", "Hard-working", "Optimistic"],
+    portraitPlaceholder: "from-teal-900 to-slate-800",
+    portrait2d: "/assets/characters/2d/Marian.png",
+    relationships: [
+      {
+        role: "Works For",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Victoria treats Marian with tremendous respect. Rather than giving orders she asks, \"Could you help me with something?\" — she sees Marian as part of the household rather than simply an employee.",
+      },
+      {
+        role: "Appreciated By",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
+        description:
+          "Charles appreciates Marian's professionalism and thanks her personally after large dinners or charity events. He never walks past without saying: \"Good morning, Marian.\"",
+      },
+      {
+        role: "Like A Younger Sister",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "Sloan thinks of Marian as an older sister. When she needs advice she isn't ready to discuss with her parents, she goes to Marian — they talk about school, friends, fashion, and life, and Marian always listens without judgment. Over the years she has celebrated Sloan's birthdays, comforted her after disappointments, and helped her prepare for dances.",
+      },
+      {
+        role: "Accomplice",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Oliver constantly finds reasons to visit the kitchen simply because Marian is there. She sneaks him an extra cookie, helps him finish school projects, and sometimes joins him in harmless practical jokes — provided Pierre never finds out.",
+      },
+      {
+        role: "Mentor",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Pierre is like the grandfather Marian never had. He patiently teaches her household traditions, proper etiquette, and how every great home is built on respect rather than perfection.",
+      },
+      {
+        role: "Taste Tester",
+        person: "Chef Garçon",
+        slug: "chef-garcon",
+        description:
+          "Chef Garçon constantly prepares little desserts just for Marian, and she happily volunteers to \"taste test\" every new recipe. They tease each other like brother and sister and share many laughs preparing the mansion for holidays.",
+      },
+      {
+        role: "Keeping Score",
+        person: "Thomas McMurphy",
+        slug: "thomas-mcmurphy",
+        description:
+          "McMurphy rarely smiles, and Marian considers it her personal mission to change that. She jokes that she's keeping score — whenever he smiles, she announces: \"That's number seventeen this month.\" He simply shakes his head, but secretly enjoys her company. She calls him \"the toughest soft-hearted man I've ever met.\"",
+      },
+    ],
+  },
+  {
+    slug: "thomas-mcmurphy",
+    name: "Thomas McMurphy",
+    tagline: "My job isn't to be noticed. My job is to make sure everyone else gets home safely.",
+    bio: "Thomas Patrick McMurphy grew up in rural Alberta and enlisted in the Canadian Armed Forces out of high school, serving alongside allied forces overseas in reconnaissance, convoy protection, and close personal security. He rarely speaks about the war — \"That was another lifetime.\" After his honorable discharge he wanted a profession where his skills could protect rather than destroy, and became one of Western Canada's finest security professionals. Charles Fairchild hired him six years ago, and it quickly became clear he was far more than a chauffeur. Calm, watchful, and quietly kind, he believes prevention is always better than confrontation. He is always the first to arrive and the last to leave.",
+    grade: "Chauffeur",
+    isStaff: true,
+    group: "Fairchild Estate",
+    traits: ["Calm", "Disciplined", "Observant", "Loyal"],
+    portraitPlaceholder: "from-slate-800 to-gray-900",
+    portrait2d: "/assets/characters/2d/McMurphy.png",
+    relationships: [
+      {
+        role: "Employer",
+        person: "Charles Fairchild",
+        slug: "charles-fairchild",
+        description:
+          "Charles trusts McMurphy with the two things that matter most: his family and his life. The two share quiet conversations during morning drives into downtown Edmonton, and Charles values his judgment almost as much as his own.",
+      },
+      {
+        role: "Protects",
+        person: "Victoria Fairchild",
+        slug: "victoria-fairchild",
+        description:
+          "Victoria appreciates McMurphy's professionalism and kindness, and never worries when the children are with him. She often reminds him: \"You're part of this family too.\"",
+      },
+      {
+        role: "Watches Over",
+        person: "Sloan Fairchild",
+        slug: "sloan-fairchild",
+        description:
+          "McMurphy has watched Sloan grow from childhood into a young woman. He is fiercely protective but never overbearing — if she's upset, he usually notices long before anyone else. Sometimes they simply sit quietly during the drive home. Neither needs to say much.",
+      },
+      {
+        role: "Teaches",
+        person: "Oliver Fairchild",
+        slug: "oliver-fairchild",
+        description:
+          "Oliver absolutely idolizes McMurphy. Every Saturday morning the two play baseball, and he teaches Oliver throwing mechanics, sportsmanship, discipline, and confidence. He keeps a baseball glove in the trunk \"just in case Oliver wants to play,\" and has never missed one of his practices. To Oliver, McMurphy is a hero.",
+      },
+      {
+        role: "Mutual Respect",
+        person: "Pierre Laurent",
+        slug: "pierre-laurent",
+        description:
+          "Pierre runs the mansion; McMurphy protects it. Every morning before breakfast they share coffee while reviewing the day's schedule. Neither needs many words.",
+      },
+      {
+        role: "Feeds Him",
+        person: "Chef Garçon",
+        slug: "chef-garcon",
+        description:
+          "Chef Garçon always prepares an extra sandwich for McMurphy whenever he's driving long hours. McMurphy insists he doesn't need it. Chef Garçon ignores him.",
+      },
+      {
+        role: "Makes Him Smile",
+        person: "Marian Bennett",
+        slug: "marian-bennett",
+        description:
+          "Marian enjoys teasing McMurphy because he's so serious, and occasionally succeeds in making him laugh. She calls him \"the toughest soft-hearted man I've ever met.\"",
       },
     ],
   },

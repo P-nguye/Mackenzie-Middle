@@ -10,13 +10,17 @@ type DesignMode = "2d" | "3d";
 interface CharactersGridToggleProps {
   students: Character[];
   teachers: Character[];
-  sloanMansion?: Character[];
+  fairchildEstate?: Character[];
+  // Per-slug badge text for the Estate cards only, keyed by slug. Falls back to
+  // the character's `grade` when a slug isn't listed.
+  estateLabels?: Record<string, string>;
 }
 
 export default function CharactersGridToggle({
   students,
   teachers,
-  sloanMansion = [],
+  fairchildEstate = [],
+  estateLabels = {},
 }: CharactersGridToggleProps) {
   const [mode, setMode] = useState<DesignMode>("2d");
 
@@ -84,19 +88,24 @@ export default function CharactersGridToggle({
         </section>
       )}
 
-      {/* Sloan Mansion grid */}
-      {sloanMansion.length > 0 && (
+      {/* Fairchild Estate grid */}
+      {fairchildEstate.length > 0 && (
         <section>
-          <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
-            Sloan Mansion
+          <h2 className="font-display text-2xl font-bold text-text-primary mb-2">
+            Fairchild Estate
           </h2>
+          <p className="text-text-secondary text-sm mb-6 max-w-2xl">
+            The family and household of Edmonton&rsquo;s most prominent estate — and the
+            people who make a mansion feel like a home.
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {sloanMansion.map((char) => (
+            {fairchildEstate.map((char) => (
               <CharacterCard
                 key={char.slug}
                 character={char}
                 href={`/characters/${char.slug}`}
                 designMode={mode}
+                badgeLabel={estateLabels[char.slug]}
               />
             ))}
           </div>

@@ -1,6 +1,29 @@
 import type { Metadata } from "next";
-import { characters } from "@/data/characters";
+import { characters, getCharacterBySlug, type Character } from "@/data/characters";
 import CharactersGridToggle from "@/components/CharactersGridToggle";
+
+// The Estate section is ordered deliberately — family first (by age), then the
+// household staff. Listed by slug rather than filtered on `group` because Sloan
+// lives at the estate but belongs to the Students section above.
+const ESTATE_ORDER = [
+  "charles-fairchild",
+  "victoria-fairchild",
+  "sloan-fairchild",
+  "oliver-fairchild",
+  "pierre-laurent",
+  "chef-garcon",
+  "marian-bennett",
+  "thomas-mcmurphy",
+];
+
+// In the Estate section the kids are family first, so their cards show a family
+// role instead of their school grade. This is a display override for this section
+// only — `grade` on the Character is untouched, so Sloan still reads "Grade 8" in
+// the Students section and both keep their grade badge on their detail pages.
+const ESTATE_LABELS: Record<string, string> = {
+  "sloan-fairchild": "Eldest Sister",
+  "oliver-fairchild": "Younger Brother",
+};
 
 export const metadata: Metadata = {
   title: "Characters",
@@ -11,7 +34,9 @@ export const metadata: Metadata = {
 export default function CharactersPage() {
   const students = characters.filter((c) => !c.isStaff && !c.group);
   const teachers = characters.filter((c) => c.isStaff && !c.group);
-  const sloanMansion = characters.filter((c) => c.group === "Sloan Mansion");
+  const fairchildEstate = ESTATE_ORDER.map(getCharacterBySlug).filter(
+    (c): c is Character => Boolean(c)
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -30,7 +55,8 @@ export default function CharactersPage() {
       <CharactersGridToggle
         students={students}
         teachers={teachers}
-        sloanMansion={sloanMansion}
+        fairchildEstate={fairchildEstate}
+        estateLabels={ESTATE_LABELS}
       />
     </div>
   );

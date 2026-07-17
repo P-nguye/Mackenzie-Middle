@@ -71,6 +71,12 @@ export const characterSheets: Record<string, CharacterSheets> = {
   "chef-garcon": {
     profile: `${PROFILE}/Chef Garcon Character Profile.png`,
   },
+  // No entry for thomas-mcmurphy: the sheet that ships with the Fairchild Estate
+  // artwork ("Thomas McMurphy use for headshot.png") contradicts his current
+  // artwork and profile — it shows dark brown hair and gives him a U.S. Army /
+  // Pittsburgh background, where the character is blond and Canadian. Restore the
+  // entry once a matching sheet exists. The other estate characters (Charles,
+  // Victoria, Pierre, Marian) have no sheets yet, so their tabs stay hidden too.
 };
 
 export function getCharacterSheets(slug: string): CharacterSheets | undefined {
