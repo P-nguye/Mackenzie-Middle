@@ -16,6 +16,15 @@ const ESTATE_ORDER = [
   "thomas-mcmurphy",
 ];
 
+// In the Estate section the kids are family first, so their cards show a family
+// role instead of their school grade. This is a display override for this section
+// only — `grade` on the Character is untouched, so Sloan still reads "Grade 8" in
+// the Students section and both keep their grade badge on their detail pages.
+const ESTATE_LABELS: Record<string, string> = {
+  "sloan-fairchild": "Eldest Sister",
+  "oliver-fairchild": "Younger Brother",
+};
+
 export const metadata: Metadata = {
   title: "Characters",
   description:
@@ -47,6 +56,7 @@ export default function CharactersPage() {
         students={students}
         teachers={teachers}
         fairchildEstate={fairchildEstate}
+        estateLabels={ESTATE_LABELS}
       />
     </div>
   );

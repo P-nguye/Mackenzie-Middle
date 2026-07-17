@@ -11,12 +11,16 @@ interface CharactersGridToggleProps {
   students: Character[];
   teachers: Character[];
   fairchildEstate?: Character[];
+  // Per-slug badge text for the Estate cards only, keyed by slug. Falls back to
+  // the character's `grade` when a slug isn't listed.
+  estateLabels?: Record<string, string>;
 }
 
 export default function CharactersGridToggle({
   students,
   teachers,
   fairchildEstate = [],
+  estateLabels = {},
 }: CharactersGridToggleProps) {
   const [mode, setMode] = useState<DesignMode>("2d");
 
@@ -101,6 +105,7 @@ export default function CharactersGridToggle({
                 character={char}
                 href={`/characters/${char.slug}`}
                 designMode={mode}
+                badgeLabel={estateLabels[char.slug]}
               />
             ))}
           </div>
