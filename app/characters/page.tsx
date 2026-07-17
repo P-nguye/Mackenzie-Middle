@@ -16,13 +16,19 @@ const ESTATE_ORDER = [
   "thomas-mcmurphy",
 ];
 
-// In the Estate section the kids are family first, so their cards show a family
-// role instead of their school grade. This is a display override for this section
-// only — `grade` on the Character is untouched, so Sloan still reads "Grade 8" in
-// the Students section and both keep their grade badge on their detail pages.
-const ESTATE_LABELS: Record<string, string> = {
-  "sloan-fairchild": "Eldest Sister",
-  "oliver-fairchild": "Younger Brother",
+// Per-card overrides for the Estate section only — the Character objects are
+// untouched, so the Students section and the detail pages are unaffected.
+//
+// `label` replaces the grade badge: in this section the kids are family first,
+// so Sloan reads "Eldest Sister" here but still "Grade 8" under Students.
+// `portrait2d` swaps the card artwork: Sloan is shown at home on the estate,
+// while her student portrait stays as it was.
+const ESTATE_OVERRIDES: Record<string, { label?: string; portrait2d?: string }> = {
+  "sloan-fairchild": {
+    label: "Eldest Sister",
+    portrait2d: "/assets/characters/2d/SloanEstate.png",
+  },
+  "oliver-fairchild": { label: "Younger Brother" },
 };
 
 export const metadata: Metadata = {
@@ -56,7 +62,7 @@ export default function CharactersPage() {
         students={students}
         teachers={teachers}
         fairchildEstate={fairchildEstate}
-        estateLabels={ESTATE_LABELS}
+        estateOverrides={ESTATE_OVERRIDES}
       />
     </div>
   );
