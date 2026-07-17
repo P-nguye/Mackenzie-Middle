@@ -956,7 +956,7 @@ export const characterProfiles: Record<string, CharacterProfile> = {
         bullets: [
           "Height: 6'1\"",
           "Build: Athletic and powerful",
-          "Hair: Dark brown",
+          "Hair: Blond",
           "Eyes: Brown",
           "Calm, confident posture",
           "Usually dressed in a tailored black suit and tie while working",
