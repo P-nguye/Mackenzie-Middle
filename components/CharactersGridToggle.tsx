@@ -4,6 +4,7 @@
 import { useState } from "react";
 import CharacterCard from "@/components/CharacterCard";
 import type { Character } from "@/data/characters";
+import { estateHref } from "@/data/estate";
 
 type DesignMode = "2d" | "3d";
 
@@ -103,7 +104,9 @@ export default function CharactersGridToggle({
               <CharacterCard
                 key={char.slug}
                 character={char}
-                href={`/characters/${char.slug}`}
+                // Tagged so the detail page can show the estate artwork for
+                // characters who appear in more than one section.
+                href={estateHref(char.slug)}
                 designMode={mode}
                 badgeLabel={estateOverrides[char.slug]?.label}
                 portrait2dOverride={estateOverrides[char.slug]?.portrait2d}

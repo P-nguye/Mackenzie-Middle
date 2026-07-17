@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { characters, getCharacterBySlug } from "@/data/characters";
+import { ESTATE_OVERRIDES } from "@/data/estate";
 import CharacterPortrait from "@/components/CharacterPortrait";
+import CharacterPortraitForSection from "@/components/CharacterPortraitForSection";
 import CharacterDesignSheets from "@/components/CharacterDesignSheets";
 import CharacterFullProfile from "@/components/CharacterFullProfile";
 import { getCharacterSheets } from "@/data/characterSheets";
@@ -34,6 +37,7 @@ export default async function CharacterProfilePage({ params }: Props) {
 
   const sheets = getCharacterSheets(slug);
   const fullProfile = getCharacterProfile(slug);
+  const estatePortrait2d = ESTATE_OVERRIDES[slug]?.portrait2d;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -56,8 +60,20 @@ export default async function CharacterProfilePage({ params }: Props) {
       <div className="grid lg:grid-cols-3 gap-10">
         {/* Left: portrait with 2D/3D toggle + traits */}
         <div className="lg:col-span-1 space-y-6">
-          {/* Portrait — client component handles the toggle */}
-          <CharacterPortrait character={character} />
+          {/* Portrait — client component handles the toggle. Characters with
+              estate artwork resolve which version to show from the URL; the
+              fallback is the plain portrait, so the prerendered HTML always
+              carries real artwork. */}
+          {estatePortrait2d ? (
+            <Suspense fallback={<CharacterPortrait character={character} />}>
+              <CharacterPortraitForSection
+                character={character}
+                estatePortrait2d={estatePortrait2d}
+              />
+            </Suspense>
+          ) : (
+            <CharacterPortrait character={character} />
+          )}
 
           {/* Traits */}
           <div className="card p-5">

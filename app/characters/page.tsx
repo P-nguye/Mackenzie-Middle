@@ -1,35 +1,7 @@
 import type { Metadata } from "next";
 import { characters, getCharacterBySlug, type Character } from "@/data/characters";
 import CharactersGridToggle from "@/components/CharactersGridToggle";
-
-// The Estate section is ordered deliberately — family first (by age), then the
-// household staff. Listed by slug rather than filtered on `group` because Sloan
-// lives at the estate but belongs to the Students section above.
-const ESTATE_ORDER = [
-  "charles-fairchild",
-  "victoria-fairchild",
-  "sloan-fairchild",
-  "oliver-fairchild",
-  "pierre-laurent",
-  "chef-garcon",
-  "marian-bennett",
-  "thomas-mcmurphy",
-];
-
-// Per-card overrides for the Estate section only — the Character objects are
-// untouched, so the Students section and the detail pages are unaffected.
-//
-// `label` replaces the grade badge: in this section the kids are family first,
-// so Sloan reads "Eldest Sister" here but still "Grade 8" under Students.
-// `portrait2d` swaps the card artwork: Sloan is shown at home on the estate,
-// while her student portrait stays as it was.
-const ESTATE_OVERRIDES: Record<string, { label?: string; portrait2d?: string }> = {
-  "sloan-fairchild": {
-    label: "Eldest Sister",
-    portrait2d: "/assets/characters/2d/SloanEstate.png",
-  },
-  "oliver-fairchild": { label: "Younger Brother" },
-};
+import { ESTATE_ORDER, ESTATE_OVERRIDES } from "@/data/estate";
 
 export const metadata: Metadata = {
   title: "Characters",
