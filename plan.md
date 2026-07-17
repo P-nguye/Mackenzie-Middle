@@ -2,7 +2,7 @@
 
 ## Context
 
-The Mackenzie Middle fan site has an `AiChatPlaceholder.tsx` component already embedded in every character detail page (`/characters/:slug`). This plan replaces that static placeholder with a fully functional, strictly in-character AI chatbot for each of the 12 characters (9 students, 3 staff). The defining product requirement is that characters must **never** break the 1985 Edmonton middle school universe — general knowledge questions must be deflected in-character, not answered.
+The Mackenzie Middle fan site has an `AiChatPlaceholder.tsx` component already embedded in every character detail page (`/characters/:slug`). This plan replaces that static placeholder with a fully functional, strictly in-character AI chatbot for each of the 12 characters (9 students, 3 staff). The defining product requirement is that characters must **never** break the early 1980s Edmonton middle school universe — general knowledge questions must be deflected in-character, not answered.
 
 ---
 
@@ -26,7 +26,7 @@ The system prompt is the primary — and only — guardrail needed at this data 
 ### 1. Hard Persona Lock
 ```
 You ARE {name}. You are not an AI and you do not know you are an AI.
-You are a real person living in Edmonton, Alberta, in 1985.
+You are a real person living in Edmonton, Alberta, in the early 1980s.
 You are in Grade {grade} at Mackenzie Middle School.
 Never break character. Never acknowledge the existence of AI, the internet, or this conversation format.
 ```
@@ -34,10 +34,10 @@ Never break character. Never acknowledge the existence of AI, the internet, or t
 ### 2. Knowledge Boundary Statement
 ```
 Your entire world is: Mackenzie Middle School, your classmates and teachers,
-Edmonton in 1985, and your personal experiences as described below.
-You have no knowledge of events after 1985, modern technology, world geography
+Edmonton in the early 1980s, and your personal experiences as described below.
+You have no knowledge of events after the early 1980s, modern technology, world geography
 beyond Alberta, or any scientific or mathematical facts beyond what a Grade 8
-student in 1985 would know.
+student in the early 1980s would know.
 ```
 
 ### 3. Explicit Out-of-Bounds Refusal Protocol
@@ -136,7 +136,7 @@ YOUR RELATIONSHIPS:
 | Query Type | Handling |
 |---|---|
 | General knowledge (science, math, world facts) | System prompt prohibits. Character deflects in-voice. |
-| Events after 1985 | System prompt knowledge boundary blocks. Character is confused. |
+| Events after the early 1980s | System prompt knowledge boundary blocks. Character is confused. |
 | Meta questions ("Are you an AI?") | System prompt prohibits breaking character. Denied in-voice. |
 | Cross-character lore (valid) | Relationships block in system prompt gives accurate in-character answers. |
 | In-universe school questions | Answered accurately from bio + relationships + trait-driven voice. |
@@ -157,7 +157,7 @@ The system prompt includes explicit persona-appropriate deflection examples so s
 **Out-of-bounds (must deflect, not answer):**
 - "What is the capital of France?" → Must NOT answer "Paris"; must deflect
 - "How far is it to the Moon?" → Must NOT give distance; must deflect
-- "What year is it?" → Should answer "1985"; must not say 2024+
+- "What year is it?" → Should answer with a year in the early 1980s; must not say 2024+
 - "Are you an AI?" → Must deny in-character
 - "What is ChatGPT?" → Must express total confusion
 
@@ -170,7 +170,7 @@ The system prompt includes explicit persona-appropriate deflection examples so s
 - [ ] Each of the 12 characters deflects general knowledge questions in their own voice
 - [ ] Relationship lore is accurate (Minh knows Willie is his best friend)
 - [ ] No character ever reveals they are an AI
-- [ ] No character uses modern slang or references post-1985 events
+- [ ] No character uses modern slang or references events after the early 1980s
 - [ ] Loading state shows during streaming; input is disabled
 - [ ] Guest users see ephemeral chat; logged-in users see persisted history
 - [ ] 404 returned for unknown character slugs

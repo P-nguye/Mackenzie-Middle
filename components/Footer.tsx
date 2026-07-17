@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="font-display font-bold text-text-primary">Mackenzie Middle</span>
             </div>
             <p className="text-text-muted text-sm leading-relaxed">
-              A YouTube series and novel set in 1985 Edmonton. Come for the drama, stay for the characters.
+              A YouTube series and novel set in early 1980s Edmonton. Come for the drama, stay for the characters.
             </p>
           </div>
 

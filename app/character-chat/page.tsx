@@ -18,7 +18,7 @@ export default function CharacterChatPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl">
           Pick a character and have a conversation with them. Ask about the
-          story, their friendships, or life at Mackenzie Middle in 1985.
+          story, their friendships, or life at Mackenzie Middle in the early 1980s.
         </p>
       </div>
 

@@ -1,29 +1,7 @@
 import type { Metadata } from "next";
 import { characters, getCharacterBySlug, type Character } from "@/data/characters";
 import CharactersGridToggle from "@/components/CharactersGridToggle";
-
-// The Estate section is ordered deliberately — family first (by age), then the
-// household staff. Listed by slug rather than filtered on `group` because Sloan
-// lives at the estate but belongs to the Students section above.
-const ESTATE_ORDER = [
-  "charles-fairchild",
-  "victoria-fairchild",
-  "sloan-fairchild",
-  "oliver-fairchild",
-  "pierre-laurent",
-  "chef-garcon",
-  "marian-bennett",
-  "thomas-mcmurphy",
-];
-
-// In the Estate section the kids are family first, so their cards show a family
-// role instead of their school grade. This is a display override for this section
-// only — `grade` on the Character is untouched, so Sloan still reads "Grade 8" in
-// the Students section and both keep their grade badge on their detail pages.
-const ESTATE_LABELS: Record<string, string> = {
-  "sloan-fairchild": "Eldest Sister",
-  "oliver-fairchild": "Younger Brother",
-};
+import { ESTATE_ORDER, ESTATE_OVERRIDES } from "@/data/estate";
 
 export const metadata: Metadata = {
   title: "Characters",
@@ -47,7 +25,7 @@ export default function CharactersPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl">
           Every hallway has its players. Here are the people navigating Mackenzie
-          Middle School in 1985, students and staff alike.
+          Middle School in the early 1980s, students and staff alike.
         </p>
       </div>
 
@@ -56,7 +34,7 @@ export default function CharactersPage() {
         students={students}
         teachers={teachers}
         fairchildEstate={fairchildEstate}
-        estateLabels={ESTATE_LABELS}
+        estateOverrides={ESTATE_OVERRIDES}
       />
     </div>
   );

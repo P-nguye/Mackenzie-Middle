@@ -10,12 +10,19 @@ type DesignMode = "2d" | "3d";
 
 interface CharacterPortraitProps {
   character: Character;
+  // Replaces the 2D artwork, so the same character can be shown differently
+  // depending on the section they were opened from. 3D mode is unaffected.
+  portrait2dOverride?: string;
 }
 
-export default function CharacterPortrait({ character }: CharacterPortraitProps) {
+export default function CharacterPortrait({
+  character,
+  portrait2dOverride,
+}: CharacterPortraitProps) {
   const [mode, setMode] = useState<DesignMode>("2d");
 
-  const portrait = mode === "2d" ? character.portrait2d : character.portrait3d;
+  const portrait =
+    mode === "2d" ? (portrait2dOverride ?? character.portrait2d) : character.portrait3d;
 
   return (
     <div className="space-y-3">

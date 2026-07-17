@@ -14,6 +14,9 @@ interface CharacterCardProps {
   // Replaces the `grade` badge for this card only — lets one section label a
   // character differently (e.g. "Eldest Sister" on the Fairchild Estate grid).
   badgeLabel?: string;
+  // Replaces the 2D artwork for this card only, so a character can be shown
+  // differently per section. 3D mode is unaffected.
+  portrait2dOverride?: string;
 }
 
 export default function CharacterCard({
@@ -24,10 +27,11 @@ export default function CharacterCard({
   onSelect,
   designMode,
   badgeLabel,
+  portrait2dOverride,
 }: CharacterCardProps) {
   const portrait =
     designMode === "2d"
-      ? character.portrait2d
+      ? (portrait2dOverride ?? character.portrait2d)
       : designMode === "3d"
         ? character.portrait3d
         : undefined;

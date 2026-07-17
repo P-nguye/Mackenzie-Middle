@@ -21,7 +21,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Copy */}
             <div>
-              <span className="badge badge-amber mb-6 inline-flex rise">Edmonton, 1985</span>
+              <span className="badge badge-amber mb-6 inline-flex rise">Edmonton, early 1980s</span>
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.02] tracking-tight mb-6 rise rise-1">
                 Mackenzie Middle<span className="text-accent-amber">.</span>
               </h1>
@@ -143,7 +143,7 @@ export default function Home() {
             <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-6">
               See the paint sketches and production art behind Mackenzie Middle — how we designed
               the school, Minh&rsquo;s and Sloan&rsquo;s houses, the storyboards, the soundtrack, and
-              the 1985 world it all lives in.
+              the early 1980s world it all lives in.
             </p>
             <span className="btn-primary w-fit">
               Explore Behind the Scenes
